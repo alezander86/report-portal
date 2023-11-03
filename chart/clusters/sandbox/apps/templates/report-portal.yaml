@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: chart/clusters/sandbox/custom/report-portal
+    path: chart/sandbox/custom/report-portal
     targetRevision: {{ .Values.targetRevision }}
     helm:
       releaseName: report-portal
