@@ -1,0 +1,51 @@
+destinationServer: "eks-sandbox"
+
+capsule:
+  createNamespace: true
+  enable: true
+
+extensions-oidc:
+  createNamespace: true
+  enable: true
+
+# Harbor with HA
+harbor-ha:
+  createNamespace: true
+  enable: true
+
+ingress-nginx:
+  createNamespace: false
+  enable: true
+
+nexus:
+  createNamespace: true
+  enable: true
+
+nexus-operator:
+  createNamespace: true
+  enable: true
+
+opensearch:
+  createNamespace: true
+  enable: true
+
+# Postgres Operator
+postgres-operator:
+  createNamespace: true
+  enable: true
+
+sonar:
+  createNamespace: true
+  enable: true
+
+sonar-operator:
+  createNamespace: true
+  enable: true
+
+vault-kms:
+  createNamespace: true
+  enable: true
+
+argo-cd:
+  createNamespace: true
+  enable: true

@@ -1,0 +1,18 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: reportportal-minio-creds
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: SecretStore
+    name: aws-parameterstore
+  data:
+  - secretKey: root-password
+    remoteRef:
+      key: /edp/system2
+      property: reportportal.root-password
+  - secretKey: root-user
+    remoteRef:
+      key: /edp/system2
+      property: reportportal.root-user

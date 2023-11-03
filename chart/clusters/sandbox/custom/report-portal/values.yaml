@@ -1,0 +1,99 @@
+reportportal:
+  serviceindex:
+    resources:
+      requests:
+        cpu: 50m
+  uat:
+    resources:
+      requests:
+        cpu: 50m
+  serviceui:
+    resources:
+      requests:
+        cpu: 50m
+  serviceapi:
+    resources:
+      requests:
+        cpu: 50m
+  serviceanalyzer:
+    resources:
+      requests:
+        cpu: 50m
+  serviceanalyzertrain:
+    resources:
+      requests:
+        cpu: 50m
+
+  rabbitmq:
+    SecretName: "reportportal-rabbitmq-creds"
+    endpoint:
+      address: sandbox-rabbitmq.report-portal-ot.svc.cluster.local
+      user: user
+      apiuser: user
+
+  postgresql:
+    SecretName: "reportportal-postgresql-creds"
+    endpoint:
+      address: sandbox-postgresql.report-portal-ot.svc.cluster.local
+
+  elasticsearch:
+    endpoint: http://elasticsearch-master.report-portal-ot.svc.cluster.local:9200
+
+  minio:
+    secretName: "reportportal-minio-creds"
+    endpoint: http://sandbox-minio.report-portal-ot.svc.cluster.local:9000
+    endpointshort: sandbox-minio.report-portal-ot.svc.cluster.local:9000
+    accesskeyName: "root-user"
+    secretkeyName: "root-password"
+
+  ingress:
+    # IF YOU HAVE SOME DOMAIN NAME SET INGRESS.USEDOMAINNAME to true
+    usedomainname: true
+    hosts:
+      - report-portal-ot.eks-sandbox.aws.main.edp.projects.epam.com
+
+elasticsearch:
+  replicas: 1
+
+  extraEnvs:
+    - name: discovery.type
+      value: single-node
+    - name: cluster.initial_master_nodes
+      value: ""
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "2Gi"
+
+  volumeClaimTemplate:
+    resources:
+      requests:
+        storage: 3Gi
+
+minio:
+  auth:
+    existingSecret: reportportal-minio-creds
+  persistence:
+    size: 1Gi
+
+postgresql:
+  persistence:
+    size: 1Gi
+  resources:
+    requests:
+      cpu: "100m"
+  postgresqlUsername: "rpuser"
+  postgresqlDatabase: "reportportal"
+  existingSecret: "reportportal-postgresql-creds"
+  initdbScripts:
+    init_postgres.sh: |
+      #!/bin/sh
+      /opt/bitnami/postgresql/bin/psql -U postgres -d ${POSTGRES_DB} -c 'CREATE EXTENSION IF NOT EXISTS ltree; CREATE EXTENSION IF NOT EXISTS pgcrypto; CREATE EXTENSION IF NOT EXISTS pg_trgm;'
+
+rabbitmq:
+  auth:
+    existingPasswordSecret: reportportal-rabbitmq-creds
+    existingErlangSecret: reportportal-rabbitmq-creds
+  persistence:
+    size: 1Gi

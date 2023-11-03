@@ -1,0 +1,18 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: reportportal-rabbitmq-creds
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: SecretStore
+    name: aws-parameterstore
+  data:
+  - secretKey: rabbitmq-erlang-cookie
+    remoteRef:
+      key: /edp/system2
+      property: reportportal.rabbitmq-cookie
+  - secretKey: rabbitmq-password
+    remoteRef:
+      key: /edp/system2
+      property: reportportal.rabbitmq-password
