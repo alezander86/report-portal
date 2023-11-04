@@ -11,8 +11,8 @@ spec:
   - secretKey: postgresql-password
     remoteRef:
       key: /edp/system2
-      property: reportportal.postgresql-cookie
+      property: reportportal.postgresql-password
   - secretKey: postgresql-postgres-password
     remoteRef:
       key: /edp/system2
-      property: reportportal.postgresql-password
+      property: reportportal.postgresql-postgres-password
