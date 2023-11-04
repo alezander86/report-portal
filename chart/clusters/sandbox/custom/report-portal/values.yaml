@@ -27,22 +27,22 @@ reportportal:
   rabbitmq:
     SecretName: "reportportal-rabbitmq-creds"
     endpoint:
-      address: sandbox-rabbitmq.report-portal-ot.svc.cluster.local
+      address: sandbox-rabbitmq.report-portal.svc.cluster.local
       user: user
       apiuser: user
 
   postgresql:
     SecretName: "reportportal-postgresql-creds"
     endpoint:
-      address: sandbox-postgresql.report-portal-ot.svc.cluster.local
-
+      address: sandbox-postgresql.report-portal.svc.cluster.local
+``
   elasticsearch:
-    endpoint: http://elasticsearch-master.report-portal-ot.svc.cluster.local:9200
+    endpoint: http://elasticsearch-master.report-portal.svc.cluster.local:9200
 
   minio:
     secretName: "reportportal-minio-creds"
-    endpoint: http://sandbox-minio.report-portal-ot.svc.cluster.local:9000
-    endpointshort: sandbox-minio.report-portal-ot.svc.cluster.local:9000
+    endpoint: http://sandbox-minio.report-portal.svc.cluster.local:9000
+    endpointshort: sandbox-minio.report-portal.svc.cluster.local:9000
     accesskeyName: "root-user"
     secretkeyName: "root-password"
 
@@ -50,7 +50,7 @@ reportportal:
     # IF YOU HAVE SOME DOMAIN NAME SET INGRESS.USEDOMAINNAME to true
     usedomainname: true
     hosts:
-      - report-portal-ot.eks-sandbox.aws.main.edp.projects.epam.com
+      - report-portal.eks-test.aws.main.edp.projects.epam.com
 
 elasticsearch:
   replicas: 1
