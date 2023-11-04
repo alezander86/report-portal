@@ -1,4 +1,4 @@
-destinationServer: "eks-sandbox"
+destinationServer: "in-cluster"
 
 capsule:
   createNamespace: true
