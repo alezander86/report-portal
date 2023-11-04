@@ -41,8 +41,8 @@ reportportal:
 
   minio:
     secretName: "reportportal-minio-creds"
-    endpoint: http://minio.report-portal.svc.cluster.local:9000
-    endpointshort: eport-portal-minio.report-portal.svc.cluster.local:9000
+    endpoint: http://report-portal-minio.report-portal.svc.cluster.local:9000
+    endpointshort: report-portal-minio.report-portal.svc.cluster.local:9000
     accesskeyName: "root-user"
     secretkeyName: "root-password"
 
