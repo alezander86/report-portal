@@ -8,6 +8,10 @@ extensions-oidc:
   createNamespace: true
   enable: true
 
+report-portal:
+  createNamespace: true
+  enable: true
+
 # Harbor with HA
 harbor-ha:
   createNamespace: true
