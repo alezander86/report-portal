@@ -1,10 +1,14 @@
-destinationServer: "eks-sandbox"
+destinationServer: "in-cluster"
 
 capsule:
   createNamespace: true
   enable: true
 
 extensions-oidc:
+  createNamespace: true
+  enable: true
+
+report-portal:
   createNamespace: true
   enable: true
 
