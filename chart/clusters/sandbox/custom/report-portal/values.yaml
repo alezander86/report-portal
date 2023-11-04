@@ -27,7 +27,7 @@ reportportal:
   rabbitmq:
     SecretName: "reportportal-rabbitmq-creds"
     endpoint:
-      address: rabbitmq.report-portal.svc.cluster.local
+      address: report-portal-rabbitmq.report-portal.svc.cluster.local
       user: user
       apiuser: user
 
@@ -42,7 +42,7 @@ reportportal:
   minio:
     secretName: "reportportal-minio-creds"
     endpoint: http://minio.report-portal.svc.cluster.local:9000
-    endpointshort: minio.report-portal.svc.cluster.local:9000
+    endpointshort: eport-portal-minio.report-portal.svc.cluster.local:9000
     accesskeyName: "root-user"
     secretkeyName: "root-password"
 
