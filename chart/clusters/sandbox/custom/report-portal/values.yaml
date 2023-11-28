@@ -39,12 +39,18 @@ reportportal:
   elasticsearch:
     endpoint: http://elasticsearch-master.report-portal.svc.cluster.local:9200
 
-  minio:
+  storage:
+    type: minio
+    # type: minio / s3
+    installdep:
+      enable: false
     secretName: "reportportal-minio-creds"
-    endpoint: http://report-portal-minio.report-portal.svc.cluster.local:9000
-    endpointshort: report-portal-minio.report-portal.svc.cluster.local:9000
+    ##
+    ## env[].valueFrom.secretKeyRef.key
     accesskeyName: "root-user"
     secretkeyName: "root-password"
+    endpoint: http://report-portal-minio.report-portal.svc.cluster.local:9000
+    endpointshort: report-portal-minio.report-portal.svc.cluster.local:9000
 
   ingress:
     # IF YOU HAVE SOME DOMAIN NAME SET INGRESS.USEDOMAINNAME to true
