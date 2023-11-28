@@ -41,12 +41,7 @@ reportportal:
 
   storage:
     type: minio
-    # type: minio / s3
-    installdep:
-      enable: false
     secretName: "reportportal-minio-creds"
-    ##
-    ## env[].valueFrom.secretKeyRef.key
     accesskeyName: "root-user"
     secretkeyName: "root-password"
     endpoint: http://report-portal-minio.report-portal.svc.cluster.local:9000
