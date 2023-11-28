@@ -16,7 +16,7 @@ appVersion: "5.7.2"
 
 dependencies:
   - name: reportportal
-    version: 5.7.2
+    version: 5.8.1
     repository: https://reportportal.io/kubernetes
   - name: rabbitmq
     version: 10.3.8
