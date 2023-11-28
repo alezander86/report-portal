@@ -8,11 +8,11 @@ type: application
 
 # The chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 5.7.2
+version: 5.8.1
 
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: "5.7.2"
+appVersion: "5.8.1"
 
 dependencies:
   - name: reportportal
