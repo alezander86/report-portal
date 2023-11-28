@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.destinationServer}}-report-portal
+  name: eks-sandbox-report-portal
   namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -18,7 +18,7 @@ spec:
         report-portal:
         {{- toYaml (index .Values "report-portal") | nindent 10 }}
   destination:
-    name: {{ .Values.destinationServer | default "in-cluster" }}
+    name: {{ "in-cluster" }}
     namespace: report-portal
   syncPolicy:
     automated:
