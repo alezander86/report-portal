@@ -50,7 +50,7 @@ reportportal:
     # IF YOU HAVE SOME DOMAIN NAME SET INGRESS.USEDOMAINNAME to true
     usedomainname: true
     hosts:
-      - report-portal.eks-test.aws.main.edp.projects.epam.com
+      - report-portal.eks-sandbox.aws.main.edp.projects.epam.com
 
 elasticsearch:
   replicas: 1
