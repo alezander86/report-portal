@@ -3,7 +3,7 @@ kind: PostgresCluster
 metadata:
   name: postgresql
 spec:
-  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.8-0
+  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-11.8-0
   postgresVersion: 11
   instances:
     - name: pgha1
