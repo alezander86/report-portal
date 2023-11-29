@@ -24,7 +24,7 @@ spec:
         - reportportal
       options: "SUPERUSER"
       password: "7vpGwXD0aNVSzsBe"
-    - name: rpuser
+    - name: postgres
       databases:
         - reportportal
       options: "SUPERUSER"
