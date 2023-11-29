@@ -23,8 +23,12 @@ spec:
       databases:
         - reportportal
       options: "SUPERUSER"
-      password:
-        type: AlphaNumeric
+      password: "7vpGwXD0aNVSzsBe"
+    - name: rpuser
+      databases:
+        - reportportal
+      options: "SUPERUSER"
+      password: "RZGrLBQcp9jNZ82G"
 
   backups:
     pgbackrest:
