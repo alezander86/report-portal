@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: hippo-init-sql
 data:
-  init.sql: 
-    \c reportportal
+  init.sql: |-
+    \c reportportal\\
     CREATE EXTENSION IF NOT EXISTS ltree;
     CREATE EXTENSION IF NOT EXISTS pgcrypto;
     CREATE EXTENSION IF NOT EXISTS pg_trgm;
