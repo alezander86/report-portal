@@ -59,8 +59,6 @@ elasticsearch:
   extraEnvs:
     - name: discovery.type
       value: single-node
-    - name: discovery.seed_hosts
-      value: 127.0.0.1:9300
 
   resources:
     requests:
