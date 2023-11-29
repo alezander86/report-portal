@@ -16,9 +16,9 @@ spec:
             storage: 5Gi
 
   users:
-    - name: sonar
+    - name: rpuser
       databases:
-        - sonar
+        - reportportal
       options: "SUPERUSER"
       password:
         type: AlphaNumeric
