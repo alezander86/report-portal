@@ -38,3 +38,9 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
+
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        pg_hba:
+          - "host all all 0.0.0.0/0 trust"
