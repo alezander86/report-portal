@@ -32,9 +32,10 @@ reportportal:
       apiuser: user
 
   postgresql:
-    SecretName: "reportportal-postgresql-creds"
+    SecretName: "postgresql-pguser-rpuser"
     endpoint:
       address: postgresql-primary.report-portal.svc.cluster.local
+      password: password
 
   elasticsearch:
     endpoint: http://elasticsearch-master.report-portal.svc.cluster.local:9200
