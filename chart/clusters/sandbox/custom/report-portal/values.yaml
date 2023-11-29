@@ -56,10 +56,6 @@ reportportal:
 elasticsearch:
   replicas: 1
 
-  extraEnvs:
-    - name: discovery.type
-      value: single-node
-
   resources:
     requests:
       cpu: "100m"
