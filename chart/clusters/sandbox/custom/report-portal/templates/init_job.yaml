@@ -35,13 +35,13 @@ subjects:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: check-secrets-job
+  name: check-and-patch-secrets-job
   namespace: report-portal
 spec:
   template:
     spec:
       serviceAccountName: job-access-secrets-sa
-      containers:
+      initContainers:
       - name: check-secrets
         image: bitnami/kubectl:latest
         command:
@@ -77,29 +77,20 @@ spec:
       restartPolicy: Never
   backoffLimit: 0
 
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: copy-and-patch-secrets-job
-  namespace: report-portal
-spec:
-  template:
-    spec:
-      serviceAccountName: job-access-secrets-sa
       initContainers:
-      - name: wait-for-check-secrets-job
+      - name: wait-for-check-secrets-container
         image: bitnami/kubectl:latest
         command:
         - bash
         - -c
         - |
           set -euo pipefail
-          echo "Waiting for check-secrets-job to complete..."
-          while [[ $(kubectl get job check-secrets-job -o=jsonpath='{.status.succeeded}' --namespace report-portal) != "1" ]]; do
+          echo "Waiting for check-secrets container to complete..."
+          while [[ $(kubectl get job check-and-patch-secrets-job --namespace report-portal -o=jsonpath='{.status.conditions[?(@.type=="ContainersReady")].status}') != "True" ]]; do
             sleep 10
           done
-          echo "check-secrets-job completed successfully, proceeding to copy and patch secrets."
+          echo "check-secrets container completed successfully, proceeding to copy and patch secrets."
+
       containers:
       - name: copy-and-patch-secrets
         image: bitnami/kubectl:latest
@@ -108,7 +99,7 @@ spec:
         - -c
         - |
           set -euo pipefail
-          
+
           # Get the secrets
           reportportal_postgresql_password=$(kubectl get secret reportportal-postgresql-creds --namespace report-portal -o=jsonpath='{.data.postgresql-password}' | base64 --decode)
           reportportal_postgresql_postgres_password=$(kubectl get secret reportportal-postgresql-creds --namespace report-portal -o=jsonpath='{.data.postgresql-postgres-password}' | base64 --decode)
