@@ -34,10 +34,10 @@ reportportal:
   postgresql:
     SecretName: "reportportal-postgresql-creds"
     endpoint:
-      address: report-portal-postgresql.report-portal.svc.cluster.local
+      address: postgresql-primary.report-portal.svc.cluster.local
 
   elasticsearch:
-    endpoint: http://postgresql-primary.report-portal.svc.cluster.local:5432
+    endpoint: http://elasticsearch-master.report-portal.svc.cluster.local:9200
 
   storage:
     type: minio
