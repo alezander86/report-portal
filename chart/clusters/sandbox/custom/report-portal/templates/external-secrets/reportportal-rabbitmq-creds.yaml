@@ -10,9 +10,15 @@ spec:
   data:
   - secretKey: rabbitmq-erlang-cookie
     remoteRef:
+      conversionStrategy: Default
+      decodingStrategy: None
       key: /edp/system2
+      metadataPolicy: None
       property: reportportal.rabbitmq-cookie
   - secretKey: rabbitmq-password
     remoteRef:
+      conversionStrategy: Default
+      decodingStrategy: None
       key: /edp/system2
+      metadataPolicy: None
       property: reportportal.rabbitmq-password
