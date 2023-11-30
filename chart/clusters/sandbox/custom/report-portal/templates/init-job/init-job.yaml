@@ -2,7 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: copy-and-patch-secrets-job
-  namespace: report-portal
 spec:
   template:
     spec:

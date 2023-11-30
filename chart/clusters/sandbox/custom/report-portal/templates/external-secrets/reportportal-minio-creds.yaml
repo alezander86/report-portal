@@ -10,14 +10,14 @@ spec:
   data:
   - secretKey: root-password
     remoteRef:
-      conversionStrategy: Default	
+      conversionStrategy: Default
       decodingStrategy: None
       key: /edp/system2
       metadataPolicy: None
       property: reportportal.root-password
   - secretKey: root-user
     remoteRef:
-      conversionStrategy: Default	
+      conversionStrategy: Default
       decodingStrategy: None
       key: /edp/system2
       metadataPolicy: None
