@@ -25,7 +25,7 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 | argo-cd.enable | bool | `true` |  |
 | capsule.createNamespace | bool | `true` |  |
 | capsule.enable | bool | `true` |  |
-| destinationServer | string | `"eks-sandbox"` |  |
+| destinationServer | string | `"in-cluster"` |  |
 | extensions-oidc.createNamespace | bool | `true` |  |
 | extensions-oidc.enable | bool | `true` |  |
 | harbor-ha.createNamespace | bool | `true` |  |
@@ -40,6 +40,8 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 | opensearch.enable | bool | `true` |  |
 | postgres-operator.createNamespace | bool | `true` |  |
 | postgres-operator.enable | bool | `true` |  |
+| report-portal.createNamespace | bool | `true` |  |
+| report-portal.enable | bool | `true` |  |
 | sonar-operator.createNamespace | bool | `true` |  |
 | sonar-operator.enable | bool | `true` |  |
 | sonar.createNamespace | bool | `true` |  |

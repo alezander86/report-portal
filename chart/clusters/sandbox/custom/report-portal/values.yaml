@@ -34,7 +34,7 @@ reportportal:
   postgresql:
     SecretName: "reportportal-postgresql-creds"
     endpoint:
-      address: postgresql-primary.report-portal.svc.cluster.local
+      address: report-portal-postgresql.report-portal.svc.cluster.local
 
   elasticsearch:
     endpoint: http://elasticsearch-master.report-portal.svc.cluster.local:9200
