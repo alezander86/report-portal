@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: edp-delivery-ot-delivery-dev
+  name: edp-delivery-ot2-delivery-dev
   namespace: argocd
 spec:
   clusterResourceWhitelist:
     - group: ''
       kind: Namespace
-  description: CD pipelines for edp-delivery-ot-delivery-dev
+  description: CD pipelines for edp-delivery-ot2-delivery-dev
   destinations:
-    - namespace: edp-delivery-ot-delivery-dev-*
+    - namespace: edp-delivery-ot2-delivery-dev-*
       server: https://kubernetes.default.svc
   namespaceResourceBlacklist:
     - group: ''
@@ -22,22 +22,22 @@ spec:
     - group: '*'
       kind: '*'
   roles:
-    - description: Users for edp-delivery-ot-delivery-dev tenant
+    - description: Users for edp-delivery-ot2-delivery-dev tenant
       groups:
-        - ArgoCD-edp-delivery-ot-delivery-dev-users
+        - ArgoCD-edp-delivery-ot2-delivery-dev-users
       name: developer
       policies:
-        - p, proj:edp-delivery-ot-delivery-dev:developer, applications, create, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, applications, delete, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, applications, get, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, applications, override, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, applications, sync, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, applications, update, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, repositories, create, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, repositories, delete, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, repositories, update, edp-delivery-ot-delivery-dev/*, allow
-        - p, proj:edp-delivery-ot-delivery-dev:developer, repositories, get, edp-delivery-ot-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, applications, create, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, applications, delete, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, applications, get, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, applications, override, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, applications, sync, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, applications, update, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, repositories, create, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, repositories, delete, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, repositories, update, edp-delivery-ot2-delivery-dev/*, allow
+        - p, proj:edp-delivery-ot2-delivery-dev:developer, repositories, get, edp-delivery-ot2-delivery-dev/*, allow
   sourceNamespaces:
-    - edp-delivery-ot-delivery-dev
+    - edp-delivery-ot2-delivery-dev
   sourceRepos:
     - '*'
