@@ -19,7 +19,7 @@ spec:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace={{ (index .Values "argocd" "createNamespace") }}
+      - CreateNamespace={{ .Values.argocd.createNamespace }}
     retry:
       limit: 1
       backoff:
