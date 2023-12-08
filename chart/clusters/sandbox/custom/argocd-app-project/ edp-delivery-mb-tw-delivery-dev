@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: edp-delivery-mb-tw-delivery-dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for edp-delivery-mb-tw-delivery-dev
+  destinations:
+    - namespace: edp-delivery-mb-tw-delivery-dev-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for edp-delivery-mb-tw-delivery-dev tenant
+      groups:
+        - ArgoCD-edp-delivery-mb-tw-delivery-dev-users
+      name: developer
+      policies:
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, applications, create, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, applications, delete, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, applications, get, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, applications, override, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, applications, sync, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, applications, update, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, repositories, create, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, repositories, delete, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, repositories, update, edp-delivery-mb-tw-delivery-dev/*, allow
+        - p, proj:edp-delivery-mb-tw-delivery-dev:developer, repositories, get, edp-delivery-mb-tw-delivery-dev/*, allow
+  sourceNamespaces:
+    - edp-delivery-mb-tw-delivery-dev
+  sourceRepos:
+    - '*'

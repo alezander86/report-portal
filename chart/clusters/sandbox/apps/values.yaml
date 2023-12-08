@@ -1,5 +1,9 @@
 destinationServer: "in-cluster"
 
+argocd-app-project:
+  createNamespace: false
+  enable: true
+
 capsule:
   createNamespace: true
   enable: true

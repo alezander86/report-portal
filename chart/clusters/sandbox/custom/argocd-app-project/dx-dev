@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dx-dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for dx-dev
+  destinations:
+    - namespace: dx-dev-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for dx-dev tenant
+      groups:
+        - ArgoCD-dx-dev-users
+      name: developer
+      policies:
+        - p, proj:dx-dev:developer, applications, create, dx-dev/*, allow
+        - p, proj:dx-dev:developer, applications, delete, dx-dev/*, allow
+        - p, proj:dx-dev:developer, applications, get, dx-dev/*, allow
+        - p, proj:dx-dev:developer, applications, override, dx-dev/*, allow
+        - p, proj:dx-dev:developer, applications, sync, dx-dev/*, allow
+        - p, proj:dx-dev:developer, applications, update, dx-dev/*, allow
+        - p, proj:dx-dev:developer, repositories, create, dx-dev/*, allow
+        - p, proj:dx-dev:developer, repositories, delete, dx-dev/*, allow
+        - p, proj:dx-dev:developer, repositories, update, dx-dev/*, allow
+        - p, proj:dx-dev:developer, repositories, get, dx-dev/*, allow
+  sourceNamespaces:
+    - dx-dev
+  sourceRepos:
+    - '*'

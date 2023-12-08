@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: edp-delivery-mm-delivery-dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for edp-delivery-mm-delivery-dev
+  destinations:
+    - namespace: edp-delivery-mm-delivery-dev-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for edp-delivery-mm-delivery-dev tenant
+      groups:
+        - ArgoCD-edp-delivery-mm-delivery-dev-users
+      name: developer
+      policies:
+        - p, proj:edp-delivery-mm-delivery-dev:developer, applications, create, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, applications, delete, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, applications, get, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, applications, override, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, applications, sync, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, applications, update, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, repositories, create, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, repositories, delete, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, repositories, update, edp-delivery-mm-delivery-dev/*, allow
+        - p, proj:edp-delivery-mm-delivery-dev:developer, repositories, get, edp-delivery-mm-delivery-dev/*, allow
+  sourceNamespaces:
+    - edp-delivery-mm-delivery-dev
+  sourceRepos:
+    - '*'

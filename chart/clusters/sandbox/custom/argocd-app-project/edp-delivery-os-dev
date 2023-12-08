@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: edp-delivery-os-dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for edp-delivery-os-dev
+  destinations:
+    - namespace: edp-delivery-os-dev-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for edp-delivery-os-dev tenant
+      groups:
+        - ArgoCD-edp-delivery-os-dev-users
+      name: developer
+      policies:
+        - p, proj:edp-delivery-os-dev:developer, applications, create, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, applications, delete, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, applications, get, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, applications, override, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, applications, sync, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, applications, update, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, repositories, create, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, repositories, delete, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, repositories, update, edp-delivery-os-dev/*, allow
+        - p, proj:edp-delivery-os-dev:developer, repositories, get, edp-delivery-os-dev/*, allow
+  sourceNamespaces:
+    - edp-delivery-os-dev
+  sourceRepos:
+    - '*'

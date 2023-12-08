@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: release-eks-github
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for release-eks-github
+  destinations:
+    - namespace: release-eks-github-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for release-eks-github tenant
+      groups:
+        - ArgoCD-release-eks-github-users
+      name: developer
+      policies:
+        - p, proj:release-eks-github:developer, applications, create, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, applications, delete, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, applications, get, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, applications, override, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, applications, sync, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, applications, update, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, repositories, create, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, repositories, delete, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, repositories, update, release-eks-github/*, allow
+        - p, proj:release-eks-github:developer, repositories, get, release-eks-github/*, allow
+  sourceNamespaces:
+    - release-eks-github
+  sourceRepos:
+    - '*'

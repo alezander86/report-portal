@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: backstage-dev
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for backstage-dev
+  destinations:
+    - namespace: backstage-dev-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for backstage-dev tenant
+      groups:
+        - ArgoCD-backstage-dev-users
+      name: developer
+      policies:
+        - p, proj:backstage-dev:developer, applications, create, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, applications, delete, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, applications, get, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, applications, override, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, applications, sync, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, applications, update, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, repositories, create, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, repositories, delete, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, repositories, update, backstage-dev/*, allow
+        - p, proj:backstage-dev:developer, repositories, get, backstage-dev/*, allow
+  sourceNamespaces:
+    - backstage-dev
+  sourceRepos:
+    - '*'
