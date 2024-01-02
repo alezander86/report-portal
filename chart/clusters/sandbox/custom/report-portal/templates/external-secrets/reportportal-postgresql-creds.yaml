@@ -12,13 +12,13 @@ spec:
     remoteRef:
       conversionStrategy: Default
       decodingStrategy: None
-      key: /edp/addons/eks-core/report-portal
+      key: /edp/addons/eks-sandbox/report-portal
       metadataPolicy: None
       property: reportportal.postgresql-password
   - secretKey: postgresql-postgres-password
     remoteRef:
       conversionStrategy: Default
       decodingStrategy: None
-      key: /edp/addons/eks-core/report-portal
+      key: /edp/addons/eks-sandbox/report-portal
       metadataPolicy: None
       property: reportportal.postgresql-postgres-password

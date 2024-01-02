@@ -11,7 +11,6 @@ A Helm chart for report-portal
 | https://charts.bitnami.com/bitnami | minio | 11.10.3 |
 | https://charts.bitnami.com/bitnami | rabbitmq | 10.3.8 |
 | https://helm.elastic.co | elasticsearch | 7.17.3 |
-| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | postgresql | 10.9.4 |
 | https://reportportal.io/kubernetes | reportportal | 5.8.1 |
 
 ## Values
@@ -24,12 +23,6 @@ A Helm chart for report-portal
 | elasticsearch.volumeClaimTemplate.resources.requests.storage | string | `"3Gi"` |  |
 | minio.auth.existingSecret | string | `"reportportal-minio-creds"` |  |
 | minio.persistence.size | string | `"1Gi"` |  |
-| postgresql.existingSecret | string | `"reportportal-postgresql-creds"` |  |
-| postgresql.initdbScripts."init_postgres.sh" | string | `"#!/bin/sh\n/opt/bitnami/postgresql/bin/psql -U postgres -d ${POSTGRES_DB} -c 'CREATE EXTENSION IF NOT EXISTS ltree; CREATE EXTENSION IF NOT EXISTS pgcrypto; CREATE EXTENSION IF NOT EXISTS pg_trgm;'\n"` |  |
-| postgresql.persistence.size | string | `"1Gi"` |  |
-| postgresql.postgresqlDatabase | string | `"reportportal"` |  |
-| postgresql.postgresqlUsername | string | `"rpuser"` |  |
-| postgresql.resources.requests.cpu | string | `"100m"` |  |
 | rabbitmq.auth.existingErlangSecret | string | `"reportportal-rabbitmq-creds"` |  |
 | rabbitmq.auth.existingPasswordSecret | string | `"reportportal-rabbitmq-creds"` |  |
 | rabbitmq.persistence.size | string | `"1Gi"` |  |
@@ -37,7 +30,7 @@ A Helm chart for report-portal
 | reportportal.ingress.hosts[0] | string | `"report-portal.eks-sandbox.aws.main.edp.projects.epam.com"` |  |
 | reportportal.ingress.usedomainname | bool | `true` |  |
 | reportportal.postgresql.SecretName | string | `"reportportal-postgresql-creds"` |  |
-| reportportal.postgresql.endpoint.address | string | `"report-portal-postgresql.report-portal.svc.cluster.local"` |  |
+| reportportal.postgresql.endpoint.address | string | `"postgresql-primary.report-portal.svc.cluster.local"` |  |
 | reportportal.rabbitmq.SecretName | string | `"reportportal-rabbitmq-creds"` |  |
 | reportportal.rabbitmq.endpoint.address | string | `"report-portal-rabbitmq.report-portal.svc.cluster.local"` |  |
 | reportportal.rabbitmq.endpoint.apiuser | string | `"user"` |  |
