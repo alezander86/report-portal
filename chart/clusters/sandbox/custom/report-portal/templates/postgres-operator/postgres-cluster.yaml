@@ -3,11 +3,15 @@ kind: PostgresCluster
 metadata:
   name: postgresql
 spec:
-  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-13.8-0
-  postgresVersion: 13
+  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.8-0
+  postgresVersion: 14
   instances:
     - name: pgha1
       replicas: 2
+      resources:
+        requests:
+          cpu: 50m
+          memory: 512Mi
       dataVolumeClaimSpec:
         accessModes:
           - "ReadWriteOnce"
