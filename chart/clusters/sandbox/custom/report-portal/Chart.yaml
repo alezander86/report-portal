@@ -1,23 +1,15 @@
 apiVersion: v2
+appVersion: "23.2"
+description: ReportPortal.io AI-powered Test Automation Dashboard
 name: reportportal
-description: A Helm chart for reportportal
-
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-type: application
-
-# The chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
 version: 23.2.0
-
 sources:
   - https://github.com/reportportal/kubernetes
 keywords:
   - reportportal
-
-# Version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application.
-appVersion: "23.2"
+maintainers:
+  - name: reportportal
+    email: support@reportportal.io
 
 dependencies:
   - name: rabbitmq
