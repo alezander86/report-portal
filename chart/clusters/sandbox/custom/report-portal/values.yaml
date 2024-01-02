@@ -36,18 +36,18 @@ reportportal:
     endpoint:
       address: postgresql-primary.report-portal.svc.cluster.local
 
-  searchengine:
-    doubleEntry:
-      enable: true
-    ## @param searchengine.endpoint URL without protocol and port. By default opensearch-cluster-master.{{ .Release.Namespace }}.svc.cluster.local
-    endpoint: opensearch-cluster-master.report-portal.svc.cluster.local
-    ## ref. to @param searchengine.protocol
-    ssl: false  ## set to `true` if use HTTPS
-    port: 9200
+  # searchengine:
+  #   doubleEntry:
+  #     enable: true
+  #   ## @param searchengine.endpoint URL without protocol and port. By default opensearch-cluster-master.{{ .Release.Namespace }}.svc.cluster.local
+  #   endpoint: opensearch-cluster-master.report-portal.svc.cluster.local
+  #   ## ref. to @param searchengine.protocol
+  #   ssl: false  ## set to `true` if use HTTPS
+  #   port: 9200
 
 
-#  elasticsearch:
-#    endpoint: http://elasticsearch-master.report-portal.svc.cluster.local:9200
+  elasticsearch:
+    endpoint: opensearch-cluster-master.report-portal.svc.cluster.local:9200
 
   storage:
     type: minio
