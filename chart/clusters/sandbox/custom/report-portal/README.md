@@ -1,6 +1,6 @@
 # report-portal
 
-![Version: 5.8.1](https://img.shields.io/badge/Version-5.8.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.8.1](https://img.shields.io/badge/AppVersion-5.8.1-informational?style=flat-square)
+![Version: 5.10.0](https://img.shields.io/badge/Version-5.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.2](https://img.shields.io/badge/AppVersion-23.2-informational?style=flat-square)
 
 A Helm chart for report-portal
 
@@ -9,24 +9,30 @@ A Helm chart for report-portal
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | minio | 11.10.3 |
-| https://charts.bitnami.com/bitnami | rabbitmq | 10.3.8 |
-| https://helm.elastic.co | elasticsearch | 7.17.3 |
-| https://reportportal.io/kubernetes | reportportal | 5.8.1 |
+| https://charts.bitnami.com/bitnami | rabbitmq | 10.3.9 |
+| https://opensearch-project.github.io/helm-charts/ | opensearch | 2.17.0 |
+| https://reportportal.io/kubernetes | reportportal | 5.10.0 |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| elasticsearch.replicas | int | `1` |  |
-| elasticsearch.resources.requests.cpu | string | `"100m"` |  |
-| elasticsearch.resources.requests.memory | string | `"2Gi"` |  |
-| elasticsearch.volumeClaimTemplate.resources.requests.storage | string | `"3Gi"` |  |
 | minio.auth.existingSecret | string | `"reportportal-minio-creds"` |  |
 | minio.persistence.size | string | `"1Gi"` |  |
+| opensearch.extraEnvs[0].name | string | `"DISABLE_INSTALL_DEMO_CONFIG"` |  |
+| opensearch.extraEnvs[0].value | string | `"true"` |  |
+| opensearch.extraEnvs[1].name | string | `"DISABLE_SECURITY_PLUGIN"` |  |
+| opensearch.extraEnvs[1].value | string | `"true"` |  |
+| opensearch.image.tag | string | `"2.11.1"` |  |
+| opensearch.persistence.size | string | `"3Gi"` |  |
+| opensearch.resources.requests.cpu | string | `"100m"` |  |
+| opensearch.resources.requests.memory | string | `"2Gi"` |  |
+| opensearch.singleNode | bool | `true` |  |
+| opensearch.startupProbe.initialDelaySeconds | int | `45` |  |
 | rabbitmq.auth.existingErlangSecret | string | `"reportportal-rabbitmq-creds"` |  |
 | rabbitmq.auth.existingPasswordSecret | string | `"reportportal-rabbitmq-creds"` |  |
 | rabbitmq.persistence.size | string | `"1Gi"` |  |
-| reportportal.elasticsearch.endpoint | string | `"http://elasticsearch-master.report-portal.svc.cluster.local:9200"` |  |
+| reportportal.elasticsearch.endpoint | string | `"opensearch-cluster-master.report-portal.svc.cluster.local:9200"` |  |
 | reportportal.ingress.hosts[0] | string | `"report-portal.eks-sandbox.aws.main.edp.projects.epam.com"` |  |
 | reportportal.ingress.usedomainname | bool | `true` |  |
 | reportportal.postgresql.SecretName | string | `"reportportal-postgresql-creds"` |  |

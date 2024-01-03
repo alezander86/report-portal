@@ -67,8 +67,6 @@ rabbitmq:
     size: 1Gi
 
 opensearch:
-  image:
-    tag: 2.11.1
   singleNode: true
   startupProbe:
     initialDelaySeconds: 45
