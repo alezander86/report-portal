@@ -36,16 +36,6 @@ reportportal:
     endpoint:
       address: postgresql-primary.report-portal.svc.cluster.local
 
-  # searchengine:
-  #   doubleEntry:
-  #     enable: true
-  #   ## @param searchengine.endpoint URL without protocol and port. By default opensearch-cluster-master.{{ .Release.Namespace }}.svc.cluster.local
-  #   endpoint: opensearch-cluster-master.report-portal.svc.cluster.local
-  #   ## ref. to @param searchengine.protocol
-  #   ssl: false  ## set to `true` if use HTTPS
-  #   port: 9200
-
-
   elasticsearch:
     endpoint: opensearch-cluster-master.report-portal.svc.cluster.local:9200
 
@@ -90,18 +80,22 @@ rabbitmq:
     size: 1Gi
 
 opensearch:
-  install: true   ## set to `false` if using a Cloud/On-Premise managed OpenSearch.
   image:
-    repository: opensearchproject/opensearch
     tag: 2.11.1
-  ## @param opensearch.singleNode If "true", replicas will be forced from 3 to 1
   singleNode: true
-  ## @param opensearch.httpPort Port for OpenSearch endpoint
-  httpPort: 9200
   startupProbe:
-    initialDelaySeconds: 30
+    initialDelaySeconds: 45
   extraEnvs:
     - name: DISABLE_INSTALL_DEMO_CONFIG
       value: "true"
     - name: DISABLE_SECURITY_PLUGIN
       value: "true"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "2Gi"
+
+  volumeClaimTemplate:
+    resources:
+      requests:
+        storage: 3Gi
