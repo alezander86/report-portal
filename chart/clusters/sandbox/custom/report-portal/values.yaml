@@ -82,5 +82,5 @@ opensearch:
       cpu: "100m"
       memory: "2Gi"
 
-persistence:
-  size: 3Gi
+  persistence:
+    size: 3Gi
