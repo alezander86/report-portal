@@ -53,19 +53,6 @@ reportportal:
     hosts:
       - report-portal.eks-sandbox.aws.main.edp.projects.epam.com
 
-elasticsearch:
-  replicas: 1
-
-  resources:
-    requests:
-      cpu: "100m"
-      memory: "2Gi"
-
-  volumeClaimTemplate:
-    resources:
-      requests:
-        storage: 3Gi
-
 minio:
   auth:
     existingSecret: reportportal-minio-creds
@@ -95,7 +82,5 @@ opensearch:
       cpu: "100m"
       memory: "2Gi"
 
-  volumeClaimTemplate:
-    resources:
-      requests:
-        storage: 3Gi
+persistence:
+  size: 3Gi
