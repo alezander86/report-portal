@@ -19,7 +19,7 @@ spec:
         {{- toYaml .Values.nexus | nindent 10 }}
   destination:
     name: {{ .Values.destinationServer | default "in-cluster" }}
-    namespace: nexus
+    namespace: nexus2
   syncPolicy:
     automated:
       prune: true

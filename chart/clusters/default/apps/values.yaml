@@ -137,3 +137,6 @@ vaultKMS:
 vaultOKD:
   createNamespace: true
   enable: true
+
+# repoUrl: "git@github.com:alezander86/report-portal.git"
+# targetRevision: "main"
