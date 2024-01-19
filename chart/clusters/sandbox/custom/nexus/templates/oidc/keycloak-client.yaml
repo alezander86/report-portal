@@ -5,7 +5,7 @@ metadata:
   name: nexus
 spec:
   advancedProtocolMappers: true
-  clientId: nexus
+  clientId: nexus2
   defaultClientScopes:
     - groups
     - edp
