@@ -1,3 +1,5 @@
+destinationServer: "eks-sandbox"
+
 # keep sorted order
 # -- ArgoCD Deployment
 argocd:

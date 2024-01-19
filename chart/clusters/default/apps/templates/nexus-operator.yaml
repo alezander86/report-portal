@@ -1,29 +1,31 @@
-{{- if and (.Values.nexusOperator) (.Values.nexusOperator.enable) -}}
+{{- if and (index .Values "nexus-operator") (index .Values "nexus-operator" "enable") -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nexus-operator
+  name: {{ .Values.destinationServer}}-nexus-operator
   namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: {{ .Values.argoProject | default "default" }}
+  project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/nexus-operator
+    path: chart/clusters/sandbox/custom/nexus-operator
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      releaseName: nexus-operator
       values: |
         nexus-operator:
-        {{- toYaml .Values.nexus-operator | nindent 10 }}
+        {{- toYaml (index .Values "nexus-operator") | nindent 10 }}
   destination:
-    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
-    namespace: nexus2
+    name: {{ .Values.destinationServer | default "in-cluster" }}
+    namespace: nexus
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace={{ .Values.nexusOperator.createNamespace }}
+      - ServerSideApply=true
+      - CreateNamespace={{ (index .Values "nexus-operator" "createNamespace") }}
     retry:
       limit: 1
       backoff:

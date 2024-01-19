@@ -2,27 +2,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nexus
+  name: {{ .Values.destinationServer}}-nexus
   namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: {{ .Values.argoProject | default "default" }}
+  project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/nexus
+    path: chart/clusters/sandbox/custom/nexus
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      releaseName: nexus
       values: |
         nexus-repository-manager:
-        {{- toYaml .Values.sonarqube | nindent 10 }}
+        {{- toYaml .Values.nexus | nindent 10 }}
   destination:
-    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
-    namespace: nexus2
+    name: {{ .Values.destinationServer | default "in-cluster" }}
+    namespace: nexus
   syncPolicy:
     automated:
       prune: true
     syncOptions:
+      - ServerSideApply=true
       - CreateNamespace={{ .Values.nexus.createNamespace }}
     retry:
       limit: 1
