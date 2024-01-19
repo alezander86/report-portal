@@ -18,7 +18,7 @@ spec:
         {{- toYaml .Values.nexusOperator | nindent 10 }}
   destination:
     server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
-    namespace: nexus
+    namespace: nexus2
   syncPolicy:
     automated:
       prune: true
