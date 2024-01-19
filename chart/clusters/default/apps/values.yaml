@@ -89,7 +89,7 @@ nexus:
   createNamespace: true
   enable: true
 
-nexusOperator:
+nexus-operator:
   createNamespace: true
   enable: true
 
