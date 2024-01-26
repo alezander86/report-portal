@@ -1,0 +1,73 @@
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusRepository
+metadata:
+  name: edp-dotnet-proxy
+  namespace: nexus
+spec:
+  nexusRef:
+    name: nexus
+  nuget:
+    proxy:
+      name: edp-dotnet-proxy
+      proxy:
+        remoteUrl: https://api.nuget.org/v3/index.json
+        contentMaxAge: 1440
+        metadataMaxAge: 1440
+      online: true
+      routingRule: "routing-rule"
+      httpClient:
+        autoBlock: true
+        blocked: true
+        connection:
+          timeout: 1440
+          retries: 1440
+          userAgentSuffix: "user-agent-suffix"
+      negativeCache:
+        enabled: true
+        timeToLive: 1440
+      storage:
+        blobStoreName: "edp-dotnet"
+        strictContentTypeValidation: true
+
+---
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusRepository
+metadata:
+  name: go-group
+  namespace: nexus
+spec:
+  nexusRef:
+    name: nexus-sample
+  go:
+    group:
+      name: go-group
+      group:
+        memberNames:
+          - go-proxy
+      online: true
+      storage:
+        blobStoreName: "blob-store-name"
+        strictContentTypeValidation: true
+
+
+---
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusRepository
+metadata:
+  name: npm-hosted
+  namespace: nexus
+spec:
+  nexusRef:
+    name: nexus-sample
+  npm:
+    hosted:
+      name: npm-hosted
+      storage:
+        blobStoreName: "blob-store-name"
+        strictContentTypeValidation: true
+      online: true
+      component:
+        proprietaryComponents: true
+      cleanup:
+        policyNames:
+          - "cleanup-policy"

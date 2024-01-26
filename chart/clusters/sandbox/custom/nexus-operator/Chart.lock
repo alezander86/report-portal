@@ -1,0 +1,6 @@
+dependencies:
+- name: nexus-operator
+  repository: https://epam.github.io/edp-helm-charts/stable
+  version: 3.1.0
+digest: sha256:bf8658abf4692098bced30b93bcd490fb5ca79134460aa4cd4c495df042c2245
+generated: "2024-01-22T14:08:50.155199+02:00"
