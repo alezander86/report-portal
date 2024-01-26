@@ -1,0 +1,21 @@
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusRepository
+metadata:
+  name: edp-maven-group
+  namespace: nexus
+spec:
+  nexusRef:
+    name: nexus
+  nuget:
+    group:
+      name: edp-maven-group
+      group:
+        memberNames:
+          - edp-maven-proxy
+          - edp-maven-releases
+          - edp-maven-snapshots
+          - edp-maven-hosted
+      online: true
+      storage:
+        blobStoreName: "edp-maven"
+        strictContentTypeValidation: true

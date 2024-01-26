@@ -1,0 +1,11 @@
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusBlobStore
+metadata:
+  name: edp-dotnet
+  namespace: nexus
+spec:
+  name: edp-dotnet
+  file:
+    path: edp-dotnet
+  nexusRef:
+    name: nexus

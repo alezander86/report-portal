@@ -32,6 +32,7 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 | defectdojo.createNamespace | bool | `true` | whether to create the namespace or not |
 | dependencyTrack.createNamespace | bool | `true` |  |
 | dependencyTrack.enable | bool | `true` |  |
+| destinationServer | string | `"eks-sandbox"` |  |
 | edp.createNamespace | bool | `true` |  |
 | edp.enable | bool | `true` |  |
 | extensionsOIDC.createNamespace | bool | `true` |  |
@@ -56,10 +57,10 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 | keycloakPostgresql.enable | bool | `true` |  |
 | minioOperator.createNamespace | bool | `true` |  |
 | minioOperator.enable | bool | `false` |  |
+| nexus-operator.createNamespace | bool | `true` |  |
+| nexus-operator.enable | bool | `true` |  |
 | nexus.createNamespace | bool | `true` |  |
 | nexus.enable | bool | `true` |  |
-| nexusOperator.createNamespace | bool | `true` |  |
-| nexusOperator.enable | bool | `true` |  |
 | opensearch.createNamespace | bool | `true` |  |
 | opensearch.enable | bool | `true` |  |
 | opentelemetryOperator.createNamespace | bool | `true` |  |

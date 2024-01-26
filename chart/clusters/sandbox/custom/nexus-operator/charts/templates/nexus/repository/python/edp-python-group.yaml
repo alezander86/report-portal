@@ -1,0 +1,21 @@
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusRepository
+metadata:
+  name: edp-python-group
+  namespace: nexus
+spec:
+  nexusRef:
+    name: nexus
+  pypi:
+    group:
+      name: edp-python-group
+      group:
+        memberNames:
+          - edp-python-proxy
+          - edp-python-releases
+          - edp-python-snapshots
+          - edp-python-hosted
+      online: true
+      storage:
+        blobStoreName: "edp-python"
+        strictContentTypeValidation: true

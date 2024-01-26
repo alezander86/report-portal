@@ -1,0 +1,17 @@
+apiVersion: edp.epam.com/v1alpha1
+kind: NexusRepository
+metadata:
+  name: edp-maven-hosted
+  namespace: nexus
+spec:
+  nexusRef:
+    name: nexus
+  nuget:
+    hosted:
+      name: edp-maven-hosted
+      storage:
+        blobStoreName: "edp-maven"
+        strictContentTypeValidation: true
+      online: true
+      component:
+        proprietaryComponents: true
