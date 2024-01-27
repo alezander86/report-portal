@@ -6,7 +6,7 @@ metadata:
 spec:
   nexusRef:
     name: nexus
-  nuget:
+  npm:
     group:
       name: edp-npm-group
       group:

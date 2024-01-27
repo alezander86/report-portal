@@ -6,7 +6,7 @@ metadata:
 spec:
   nexusRef:
     name: nexus
-  nuget:
+  maven:
     hosted:
       name: edp-maven-snapshots
       storage:

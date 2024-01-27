@@ -6,8 +6,9 @@ metadata:
 spec:
   nexusRef:
     name: nexus
-  nuget:
+  maven:
     hosted:
+      versionPolicy: release
       name: edp-maven-releases
       storage:
         blobStoreName: "edp-maven"

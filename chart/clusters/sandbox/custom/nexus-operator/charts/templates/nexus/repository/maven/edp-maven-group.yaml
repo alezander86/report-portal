@@ -6,7 +6,7 @@ metadata:
 spec:
   nexusRef:
     name: nexus
-  nuget:
+  maven:
     group:
       name: edp-maven-group
       group:

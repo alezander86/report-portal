@@ -6,7 +6,7 @@ metadata:
 spec:
   nexusRef:
     name: nexus
-  nuget:
+  npm:
     hosted:
       name: edp-npm-hosted
       storage:
