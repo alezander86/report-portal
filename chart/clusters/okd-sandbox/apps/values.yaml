@@ -29,6 +29,6 @@ nexusOperator:
   createNamespace: true
   enable: true
 
-postgresOperator:
+postgres-operator:
   createNamespace: true
   enable: true
