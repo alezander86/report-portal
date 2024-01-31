@@ -1,4 +1,4 @@
-{{- if and (index .Values "postgres-operator") (index .Values "postgres-operator" "enable") -}}
+{{- if and (index .Values "postgres-operator") (index .Values "postgresOperator" "enable") -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

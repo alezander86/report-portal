@@ -28,3 +28,7 @@ nexus-okd:
 nexusOperator:
   createNamespace: true
   enable: true
+
+postgresOperator:
+  createNamespace: true
+  enable: true
