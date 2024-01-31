@@ -1,0 +1,30 @@
+destinationServer: "okd-sandbox"
+
+extensionsOIDC:
+  createNamespace: true
+  enable: true
+
+# Harbor with HA
+harborHAOKD:
+  createNamespace: true
+  enable: true
+
+vault:
+  createNamespace: true
+  enable: true
+
+sonar:
+  createNamespace: true
+  enable: true
+
+sonar-operator:
+  createNamespace: true
+  enable: true
+
+nexus-okd:
+  createNamespace: true
+  enable: true
+
+nexusOperator:
+  createNamespace: true
+  enable: true

@@ -1,0 +1,29 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: sonar
+  annotations:
+    "helm.sh/hook": "pre-install"
+fsGroup:
+  type: MustRunAs
+  ranges:
+    - min: 1000670000
+      max: 1000679999
+runAsUser:
+  type: MustRunAs
+  uid: 1000670001
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users:
+  - system:serviceaccount:sonar:sonar
+allowHostDirVolumePlugin: false
+allowHostIPC: true
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegedContainer: false
+allowedCapabilities: []
+allowedFlexVolumes: []
+readOnlyRootFilesystem: false

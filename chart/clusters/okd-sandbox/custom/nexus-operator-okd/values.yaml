@@ -1,0 +1,38 @@
+nexus-operator:
+  global:
+    # -- namespace or a project name (in case of OpenShift)
+    edpName: "nexus"
+    # -- platform type that can be "kubernetes" or "openshift"
+    platform: "openshift"
+    # -- Administrators of your tenant
+    admins:
+      - "artem_zahumonnyi@epam.com"
+      - "bohdan_mukovozov@epam.com"
+      - "dmytro_novikov@epam.com"
+      - "iryna_churkina@epam.com"
+      - "mykola_marusenko@epam.com"
+      - "mykola_serdiuk@epam.com"
+      - "mykyta_derhunov@epam.com"
+      - "oleksandr_stepanov@epam.com"
+      - "oleksandr_taruraiev@epam.com"
+      - "sergiy_kulanov@epam.com"
+      - "serhii_fomenko@epam.com"
+      - "vladyslav_palyvoda@epam.com"
+      - "zorian_motso@epam.com"
+    # -- a cluster DNS wildcard name
+    dnsWildCard: apps.okd-sandbox.aws.main.edp.projects.epam.com
+    # -- Keycloak Endpoint which is used for SSO integration. Format https://keycloak.example.com
+    keycloakUrl: "https://keycloak.eks-core.aws.main.edp.projects.epam.com"
+
+  nexusCR:
+    # -- Specifies whether Nexus CR should be created
+    create: true
+
+  nexus:
+    # -- Flag to enable/disable Nexus deploy
+    deploy: false
+
+  # Proxy configuration section
+  oauth2_proxy:
+    # -- Install oauth2-proxy as a part of nexus deployment. Default: true
+    enabled: false

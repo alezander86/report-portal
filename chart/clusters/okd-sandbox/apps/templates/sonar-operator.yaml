@@ -1,0 +1,33 @@
+{{- if and (index .Values "sonar-operator") (index .Values "sonar-operator" "enable") -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sonar-operator
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .Values.argoProject | default "default" }}
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: chart/clusters/okd-sandbox/custom/sonar-operator
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        sonar-operator:
+        {{- toYaml (index .Values "sonar-operator") | nindent 10 }}
+  destination:
+    server: {{ .Values.destinationServer | default "in-cluster" }}
+    namespace: sonar
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ (index .Values "sonar-operator" "createNamespace") }}
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

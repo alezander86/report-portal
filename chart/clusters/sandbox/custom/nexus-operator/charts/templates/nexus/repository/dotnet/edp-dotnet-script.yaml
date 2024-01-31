@@ -4,7 +4,7 @@ metadata:
   name: nexusscript
   namespace: nexus
 spec:
-  name: get-nuget-token.groovy
+  name: get-nuget-token
   content: |
     /* Copyright 2023 EPAM Systems.
 
