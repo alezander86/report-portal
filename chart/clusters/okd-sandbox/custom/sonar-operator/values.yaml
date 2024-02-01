@@ -1,14 +1,23 @@
 sonar-operator:
-  global:
-    # -- namespace or a project name (in case of OpenShift)
-    edpName: "sonar"
-    # -- platform type that can be "kubernetes" or "openshift"
-    platform: "openshift"
-    # -- a cluster DNS wildcard name
-    dnsWildCard: apps.okd-sandbox.aws.main.edp.projects.epam.com
-    openshift:
-      # -- Wich type of kind will be deployed to Openshift (values: deployments/deploymentConfigs)
-      deploymentType: "deployments"
+  name: sonar-operator
+  image:
+    # -- EDP sonar-operator Docker image name. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/sonar-operator)
+    repository: epamedp/sonar-operator
+    # if not defined then .Chart.AppVersion is used
+    # -- EDP sonar-operator Docker image tag. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/sonar-operator/tags)
+    tag: 3.1.1
+  imagePullPolicy: "IfNotPresent"
+
+  resources:
+    limits:
+      memory: 192Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+  sonar:
+    # -- Flag to enable/disable Sonar deploy
+    deploy: false
 
 keycloak:
   url: "keycloak.eks-core.aws.main.edp.projects.epam.com"
