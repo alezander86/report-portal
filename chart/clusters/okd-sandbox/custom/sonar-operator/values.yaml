@@ -16,7 +16,7 @@ sonar-operator:
       memory: 64Mi
 
   # -- URL and secret name which use sonar operator for configuring sonar
-sonarUrl: "https://sonar.okd-sandbox.aws.main.edp.projects.epam.com"
+sonarUrl: "https://sonar.apps.okd-sandbox.aws.main.edp.projects.epam.com"
 sonarSecret: "sonar-admin-password"
 
 oidc:
