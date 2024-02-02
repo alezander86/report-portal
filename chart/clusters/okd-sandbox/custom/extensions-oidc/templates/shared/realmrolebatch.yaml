@@ -10,7 +10,6 @@ spec:
     - name: developer
       composite: true
       description: "default developer role"
-      isDefault: false
       composites:
         - name: sonar-developers
     - name: administrator

@@ -8,7 +8,6 @@ spec:
     name: main
   alias: master
   displayName: "master"
-  authenticateByDefault: false
   enabled: true
   firstBrokerLoginFlowAlias: "first broker login"
   providerId: "keycloak-oidc"
