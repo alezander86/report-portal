@@ -22,4 +22,4 @@ sonarSecret: "sonar-admin-password"
 oidc:
   enabled: true
   keycloakUrl: "https://keycloak.eks-core.aws.main.edp.projects.epam.com"
-  keycloakRealm: "shared"
+  keycloakRealm: "okd-sandbox"
