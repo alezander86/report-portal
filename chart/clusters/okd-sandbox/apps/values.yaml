@@ -4,10 +4,6 @@ extensionsOIDC:
   createNamespace: true
   enable: true
 
-external-secrets:
-  createNamespace: true
-  enable: true
-
 # Harbor with HA
 harborHAOKD:
   createNamespace: true
