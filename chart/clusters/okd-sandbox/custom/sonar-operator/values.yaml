@@ -15,10 +15,11 @@ sonar-operator:
       cpu: 50m
       memory: 64Mi
 
-  sonar:
-    # -- Flag to enable/disable Sonar deploy
-    deploy: false
+  # -- URL and secret name which use sonar operator for configuring sonar
+sonarUrl: "https://sonar.okd-sandbox.aws.main.edp.projects.epam.com"
+sonarSecret: "sonar-admin-password"
 
-keycloak:
-  url: "keycloak.eks-core.aws.main.edp.projects.epam.com"
-  realm: "okd-sandbox"
+oidc:
+  enabled: true
+  keycloakUrl: "https://keycloak.eks-core.aws.main.edp.projects.epam.com"
+  keycloakRealm: "shared"
