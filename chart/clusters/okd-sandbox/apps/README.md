@@ -26,14 +26,16 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 | extensionsOIDC.enable | bool | `true` |  |
 | harborHAOKD.createNamespace | bool | `true` |  |
 | harborHAOKD.enable | bool | `true` |  |
-| nexus.createNamespace | bool | `true` |  |
-| nexus.enable | bool | `true` |  |
+| nexus-okd.createNamespace | bool | `true` |  |
+| nexus-okd.enable | bool | `true` |  |
 | nexusOperator.createNamespace | bool | `true` |  |
 | nexusOperator.enable | bool | `true` |  |
+| postgres-operator.createNamespace | bool | `true` |  |
+| postgres-operator.enable | bool | `true` |  |
 | sonar-operator.createNamespace | bool | `true` |  |
-| sonar-operator.enable | bool | `false` |  |
+| sonar-operator.enable | bool | `true` |  |
 | sonar.createNamespace | bool | `true` |  |
-| sonar.enable | bool | `false` |  |
+| sonar.enable | bool | `true` |  |
 | vault.createNamespace | bool | `true` |  |
 | vault.enable | bool | `true` |  |
 

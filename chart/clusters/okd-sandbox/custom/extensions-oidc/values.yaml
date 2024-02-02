@@ -1,7 +1,16 @@
 extensionsOIDC:
+  # Url to Keycloak
   keycloakUrl: "https://keycloak.eks-core.aws.main.edp.projects.epam.com"
 
+  mainRealm:
+    # Create the mainRealm and resources for it.
+    # Disabled, main realm and all config is configured manually.
+    enabled: false
+    name: "openshift"
+  # Realm for connecting shared service clients, such as Nexus, Sonar, DefectDojo, etc.
+  sharedRealm: "okd-sandbox"
+
+# ClusterReconciliationEnabled is enabled (set to true), the operator will reconcile all.
+# Keycloak instances throughout the cluster.
 keycloak-operator:
-  # -- If clusterReconciliationEnabled is true, the operator reconciles all Keycloak instances in the cluster;
-  #  otherwise, it only reconciles instances in the same namespace by default, and cluster-scoped resources are ignored.
   clusterReconciliationEnabled: true

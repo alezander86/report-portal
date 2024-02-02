@@ -1,0 +1,17 @@
+{{- if and (.Values.extensionsOIDC.mainRealm) (.Values.extensionsOIDC.mainRealm.enabled) -}}
+apiVersion: v1.edp.epam.com/v1
+kind: KeycloakClient
+metadata:
+  name: {{ .Values.extensionsOIDC.sharedRealm }}
+spec:
+  attributes:
+    post.logout.redirect.uris: +
+  clientId: {{ .Values.extensionsOIDC.sharedRealm }}
+  clientRoles:
+    - administrator
+    - developer
+  realmRef:
+    kind: KeycloakRealm
+    name: {{ .Values.extensionsOIDC.mainRealm.name }}
+  secret: keycloak-client-mainrealm-secret
+{{- end -}}
