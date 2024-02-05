@@ -1,8 +1,8 @@
-{{- if and (index .Values "postgres-operator") (index .Values "postgres-operator" "enable") -}}
+{{- if and (index .Values "nexus-okd") (index .Values "nexus-okd" "enable") -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.destinationServer}}-postgres-operator
+  name: {{ .Values.destinationServer}}-nexus
   namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,22 +10,20 @@ spec:
   project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: chart/clusters/okd-sandbox/custom/postgres-operator
+    path: chart/clusters/okd-sandbox/custom/nexus-okd
     targetRevision: {{ .Values.targetRevision }}
     helm:
-      releaseName: postgres-operator
       values: |
-        postgres-operator:
-        {{- toYaml (index .Values "postgres-operator") | nindent 10 }}
+        nexus-repository-manager:
+        {{- toYaml (index .Values "nexus-repository-manager") | nindent 10 }}
   destination:
     name: {{ .Values.destinationServer | default "in-cluster" }}
-    namespace: postgres-operator
+    namespace: nexus
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - ServerSideApply=true
-      - CreateNamespace={{ (index .Values "postgres-operator" "createNamespace") }}
+      - CreateNamespace={{ .Values.nexus.createNamespace }}
     retry:
       limit: 1
       backoff:
