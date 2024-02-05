@@ -1,0 +1,32 @@
+---
+# Source: nexus/charts/oauth2-proxy/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-6.16.1
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: authentication-proxy
+    app.kubernetes.io/part-of: oauth2-proxy
+    app.kubernetes.io/name: oauth2-proxy
+    app.kubernetes.io/instance: nexus
+    app.kubernetes.io/version: "7.4.0"
+  name: nexus-oauth2-proxy
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      appProtocol: http
+      name: http
+    - port: 44180
+      protocol: TCP
+      appProtocol: http
+      targetPort: metrics
+      name: metrics
+  selector:    
+    app.kubernetes.io/name: oauth2-proxy
+    app.kubernetes.io/instance: nexus

@@ -1,0 +1,111 @@
+---
+# Source: nexus/charts/nexus-repository-manager/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus
+  labels:
+    helm.sh/chart: nexus-repository-manager-61.0.2
+    app.kubernetes.io/name: nexus
+    app.kubernetes.io/instance: nexus
+    app.kubernetes.io/version: "3.61.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nexus
+      app.kubernetes.io/instance: nexus      
+  template:
+    metadata:
+      annotations:
+        checksum/configmap-properties: 8d862bf9ee0d4c651b0c0d04b9f8525cf6ec6048d8cf918adfde054b4756481a
+      labels:
+        app.kubernetes.io/name: nexus
+        app.kubernetes.io/instance: nexus
+    spec:
+      serviceAccountName: nexus-repo
+      initContainers:
+        
+      - command:
+        - mkdir
+        - -p
+        - /nexus-data/etc
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        name: fmp-volume-permission
+        securityContext:
+          runAsUser: 1000700000
+        volumeMounts:
+        - mountPath: /nexus-data
+          name: nexus-data
+      terminationGracePeriodSeconds: 120
+      containers:
+        - name: nexus-repository-manager
+          image: "sonatype/nexus3:3.61.0"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          lifecycle:
+          env:
+            
+            - name: NEXUS_SECURITY_RANDOMPASSWORD
+              value: "false"
+          envFrom:
+            
+            null
+          resources:
+            
+            limits:
+              memory: 6Gi
+            requests:
+              cpu: 100m
+              memory: 2Gi
+          ports:
+            - name: nexus-ui
+              containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 6
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 6
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /nexus-data	
+              name: nexus-data
+            - mountPath: /nexus-data/etc/nexus.properties
+              name: nexus-properties
+              subPath: nexus.properties
+      securityContext:
+        
+        fsGroup: 1000700000
+        runAsGroup: 200
+        runAsUser: 1000700000
+      volumes:
+        - name: nexus-data
+          persistentVolumeClaim:
+            claimName: nexus-data
+        - name: nexus-properties
+          configMap:
+            name: nexus-properties
+            items:
+            - key: nexus.properties
+              path: nexus.properties

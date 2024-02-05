@@ -1,0 +1,8 @@
+---
+# Source: nexus/templates/sa.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::093899590031:role/AWSIRSASandboxExternalSecretOperatorAccess
+  name: externalsecrets-aws

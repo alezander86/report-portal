@@ -1,0 +1,30 @@
+---
+# Source: nexus/charts/oauth2-proxy/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-6.16.1
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: authentication-proxy
+    app.kubernetes.io/part-of: oauth2-proxy
+    app.kubernetes.io/name: oauth2-proxy
+    app.kubernetes.io/instance: nexus
+    app.kubernetes.io/version: "7.4.0"
+  name: nexus-oauth2-proxy
+  namespace: default
+  annotations:
+    route.openshift.io/termination: edge
+spec:
+  rules:
+    - host: "nexus.apps.okd-sandbox.aws.main.edp.projects.epam.com"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: nexus-oauth2-proxy
+                port:
+                  number: 80

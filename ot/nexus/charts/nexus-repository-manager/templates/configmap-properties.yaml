@@ -1,0 +1,16 @@
+---
+# Source: nexus/charts/nexus-repository-manager/templates/configmap-properties.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nexus-properties
+  labels:
+    helm.sh/chart: nexus-repository-manager-61.0.2
+    app.kubernetes.io/name: nexus
+    app.kubernetes.io/instance: nexus
+    app.kubernetes.io/version: "3.61.0"
+    app.kubernetes.io/managed-by: Helm
+data:
+  nexus.properties: |
+    jetty.request.header.size=100000
+    nexus.scripts.allowCreation=true

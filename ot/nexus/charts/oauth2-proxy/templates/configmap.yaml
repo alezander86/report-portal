@@ -1,0 +1,18 @@
+---
+# Source: nexus/charts/oauth2-proxy/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-6.16.1
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: authentication-proxy
+    app.kubernetes.io/part-of: oauth2-proxy
+    app.kubernetes.io/name: oauth2-proxy
+    app.kubernetes.io/instance: nexus
+    app.kubernetes.io/version: "7.4.0"
+  name: nexus-oauth2-proxy
+  namespace: default
+data:
+  oauth2_proxy.cfg: "allowed_roles = [\"administrator\", \"developer\"]\nclient_id = \"nexus\"\ncode_challenge_method=\"S256\"\ncookie_csrf_expire=\"5m\"\ncookie_csrf_per_request=\"true\"\ncookie_secure = \"false\"\nemail_domains = [ \"*\" ]\ninsecure_oidc_allow_unverified_email = \"true\"\noidc_issuer_url = \"https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth/realms/okd-sandbox\"\npass_access_token = \"true\"\npass_authorization_header = \"true\"\npass_basic_auth = \"false\"\nprovider = \"keycloak-oidc\"\nredirect_url = \"https://nexus.apps.okd-sandbox.aws.main.edp.projects.epam.com/oauth2/callback\"\nskip_jwt_bearer_tokens = \"true\"\nupstreams = [ \"http://nexus:8081\" ]\nwhitelist_domains = [\"*\"]"

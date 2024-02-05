@@ -1,0 +1,18 @@
+---
+# Source: nexus/charts/nexus-repository-manager/templates/pvc.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nexus-data
+  labels:
+    helm.sh/chart: nexus-repository-manager-61.0.2
+    app.kubernetes.io/name: nexus
+    app.kubernetes.io/instance: nexus
+    app.kubernetes.io/version: "3.61.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "30Gi"
