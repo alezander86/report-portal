@@ -17,7 +17,7 @@ seLinuxContext:
 supplementalGroups:
   type: RunAsAny
 users:
-  - system:serviceaccount:nexus:nexus-oauth2-proxy
+  - system:serviceaccount:nexus:{{- toYaml (index .Values "oauth2-proxy" "serviceAccount" "name") }}
 allowHostDirVolumePlugin: false
 allowHostIPC: true
 allowHostNetwork: false

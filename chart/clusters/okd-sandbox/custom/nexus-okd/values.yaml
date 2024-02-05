@@ -70,3 +70,5 @@ oauth2-proxy:
     - nexus.apps.okd-sandbox.aws.main.edp.projects.epam.com
     annotations:
       route.openshift.io/termination: edge
+  serviceAccount:
+     name: nexus-oauth2-proxy
