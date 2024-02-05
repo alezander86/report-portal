@@ -1,4 +1,4 @@
-{{- if and (.Values.nexus) (.Values.nexus.enable) -}}
+{{- if and (.Values.nexus-okd) (.Values.nexus-okd.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -15,9 +15,9 @@ spec:
     helm:
       values: |
         nexus-repository-manager:
-        {{- toYaml .Values.nexus | nindent 10 }}
+        {{- toYaml .Values.nexus-okd | nindent 10 }}
   destination:
-    server: {{ .Values.destinationServer | default "in-cluster" }}
+    name: {{ .Values.destinationServer | default "okd-sandbox" }}
     namespace: nexus
   syncPolicy:
     automated:
