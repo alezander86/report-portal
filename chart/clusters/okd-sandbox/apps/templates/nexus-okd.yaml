@@ -15,7 +15,7 @@ spec:
     helm:
       values: |
         nexus-repository-manager:
-        {{- toYaml .Values "nexus-repository-manager" | nindent 10 }}
+        {{- toYaml .Values.["nexus-repository-manager"] | nindent 10 }}
   destination:
     name: {{ .Values.destinationServer | default "in-cluster" }}
     namespace: nexus
