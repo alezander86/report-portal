@@ -21,6 +21,7 @@ nexus-repository-manager:
   nexus:
     securityContext:
       fsGroup: 1000700000
+      runAsGroup: 1000700000
       runAsUser: 1000700000
     env:
       - name: NEXUS_SECURITY_RANDOMPASSWORD
