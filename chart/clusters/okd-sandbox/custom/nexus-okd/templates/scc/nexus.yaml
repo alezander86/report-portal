@@ -19,7 +19,7 @@ seLinuxContext:
 supplementalGroups:
   type: RunAsAny
 users:
-  - system:serviceaccount:nexus:okd
+  - system:serviceaccount:nexus:okd-sandbox-nexus-nexus-repository-manager
 allowHostDirVolumePlugin: false
 allowHostIPC: true
 allowHostNetwork: false
