@@ -1,7 +1,7 @@
 nexus-repository-manager:
   nameOverride: "nexus"
   fullnameOverride: "nexus"
-  serviceAccount:
+  serviceAccountName:
     name: nexus-repo
   ingress:
     enabled: false
