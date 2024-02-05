@@ -8,12 +8,12 @@ fsGroup:
   type: MustRunAs
   ranges:
     - min: 1000700000
-      max: 1000709999
+      max: 1000709998
 runAsUser:
   type: MustRunAsRange
   ranges:
     - min: 1000700000
-      max: 1000709999
+      max: 1000709998
 seLinuxContext:
   type: MustRunAs
 supplementalGroups:
