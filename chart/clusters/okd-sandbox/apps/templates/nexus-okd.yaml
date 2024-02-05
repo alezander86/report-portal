@@ -23,7 +23,7 @@ spec:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace={{ .Values.nexus.createNamespace }}
+      - CreateNamespace={{ .Values.nexus-okd.createNamespace }}
     retry:
       limit: 1
       backoff:
