@@ -38,3 +38,83 @@ volumes:
   - persistentVolumeClaim
   - projected
   - secret
+---
+# Source: nexus/templates/scc/nexus.yaml
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: nexus
+  annotations:
+    "helm.sh/hook": "pre-install"
+fsGroup:
+  type: MustRunAs
+  ranges:
+    - min: 1000700000
+      max: 1000709999
+runAsUser:
+  type: MustRunAsRange
+  ranges:
+    - min: 1000700000
+      max: 1000709999
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users:
+  - system:serviceaccount:nexus:nexus-repo
+allowHostDirVolumePlugin: false
+allowHostIPC: true
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegedContainer: false
+allowedCapabilities: []
+allowedFlexVolumes: []
+readOnlyRootFilesystem: false
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+---
+# Source: nexus/templates/scc/nexus.yaml
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: nexus
+  annotations:
+    "helm.sh/hook": "pre-install"
+fsGroup:
+  type: MustRunAs
+  ranges:
+    - min: 1000700000
+      max: 1000709999
+runAsUser:
+  type: MustRunAsRange
+  ranges:
+    - min: 1000700000
+      max: 1000709999
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users:
+  - system:serviceaccount:nexus:nexus-repo
+allowHostDirVolumePlugin: false
+allowHostIPC: true
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegedContainer: false
+allowedCapabilities: []
+allowedFlexVolumes: []
+readOnlyRootFilesystem: false
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
