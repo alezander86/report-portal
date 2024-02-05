@@ -10,7 +10,7 @@ spec:
   project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: chart/clusters/okd-sandbox/custom/nexus
+    path: chart/clusters/okd-sandbox/custom/nexus-okd
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
