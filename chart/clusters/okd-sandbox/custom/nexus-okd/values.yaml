@@ -6,7 +6,7 @@ nexus-repository-manager:
 
   service:
     name: "nexus"
-    portName: "http"
+    portName: "nexus-ui"
 
   route:
     enabled: true
