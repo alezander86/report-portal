@@ -6,11 +6,12 @@ nexus-repository-manager:
 
   service:
     name: "nexus-ci"
+    portName: 8081
 
   route:
     enabled: true
     name: "nexus-ci"
-    host: "nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.com"
+    path: "nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.com"
     portName: "nexus-ui"
 
   deployment:
