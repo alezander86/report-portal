@@ -1,6 +1,6 @@
-nexus-repository-manager:
+nexus:
   nameOverride: "nexus"
-  #fullnameOverride: "nexus"
+  fullnameOverride: "nexus"
   serviceAccount:
     create: false
     name: "okd"
