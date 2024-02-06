@@ -5,8 +5,8 @@ nexus-repository-manager:
     create: true
     name: "nexus-repo"
   ingress:
-    enabled: false
-    hostRepo: nexus.apps.okd-sandbox.aws.main.edp.projects.epam.con
+    enabled: true
+    hostRepo: nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.con
 
   deployment:
     initContainers:
