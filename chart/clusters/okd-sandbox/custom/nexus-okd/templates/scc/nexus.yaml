@@ -7,13 +7,13 @@ metadata:
 fsGroup:
   type: MustRunAs
   ranges:
-    - min: 1000700000
-      max: 1000709998
+    - min: 1000750000
+      max: 1000759998
 runAsUser:
   type: MustRunAsRange
   ranges:
-    - min: 1000700000
-      max: 1000709998
+    - min: 1000750000
+      max: 1000759998
 seLinuxContext:
   type: MustRunAs
 supplementalGroups:
