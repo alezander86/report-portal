@@ -1,6 +1,6 @@
 nexus-repository-manager:
   nameOverride: "nexus"
-  fullnameOverride: "nexus"
+  #fullnameOverride: "nexus"
   serviceAccount:
     name: "okd"
   ingress:
