@@ -2,8 +2,11 @@ nexus-repository-manager:
   nameOverride: "nexus"
   fullnameOverride: "nexus"
   serviceAccount:
-    create: true
     name: "nexus-repo"
+
+  service:
+    name: "nexus-ci"
+
   route:
     enabled: true
     name: "nexus-ci"
