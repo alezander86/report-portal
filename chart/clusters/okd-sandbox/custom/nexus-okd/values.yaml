@@ -8,9 +8,7 @@ nexus-repository-manager:
     enabled: true
     name: "nexus-ci"
     host: "nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.com"
-    service:
-      portName: "nexus-ui"
-      name: "nexus"
+    portName: "nexus-ui"
 
   deployment:
     initContainers:
