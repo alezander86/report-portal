@@ -5,12 +5,12 @@ nexus-repository-manager:
     name: "nexus-repo"
 
   service:
-    name: "nexus-ci"
+    name: "nexus"
     portName: "http"
 
   route:
     enabled: true
-    name: "nexus-ci"
+    name: "nexus"
     path: "nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.com"
     portName: "nexus-ui"
 
