@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        nexus-repository-manager:
+        nexus-okd:
         {{- toYaml (index .Values "nexus-repository-manager") | nindent 10 }}
   destination:
     name: {{ .Values.destinationServer | default "in-cluster" }}
