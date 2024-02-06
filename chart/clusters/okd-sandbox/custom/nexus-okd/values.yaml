@@ -6,7 +6,7 @@ nexus-repository-manager:
 
   service:
     name: "nexus-ci"
-    portName: 8081
+    portName: "http"
 
   route:
     enabled: true
