@@ -37,8 +37,6 @@ spec:
         imagePullPolicy: IfNotPresent
         name: fmp-volume-permission
         securityContext:
-          fsGroup: 1000700000
-          runAsGroup: 1000700000
           runAsUser: 1000700000
         volumeMounts:
         - mountPath: /nexus-data

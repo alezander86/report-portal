@@ -2,7 +2,7 @@ nexus-repository-manager:
   nameOverride: "nexus"
   fullnameOverride: "nexus"
   serviceAccount:
-    name: nexus-repo
+    name: "nexus-repo"
   ingress:
     enabled: false
     hostRepo: nexus.apps.okd-sandbox.aws.main.edp.projects.epam.con

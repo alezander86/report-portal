@@ -112,3 +112,41 @@ volumes:
   - persistentVolumeClaim
   - projected
   - secret
+---
+# Source: nexus/templates/scc/nexus-oauth2-proxy.yaml
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: nexus-oauth2-proxy
+  annotations:
+    "helm.sh/hook": "pre-install"
+fsGroup:
+  ranges:
+    - max: 1000709999
+      min: 1000700000
+  type: MustRunAs
+runAsUser:
+  type: MustRunAs
+  uid: 1000700001
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users:
+  - system:serviceaccount:nexus:nexus-oauth2-proxy
+allowHostDirVolumePlugin: false
+allowHostIPC: true
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegedContainer: false
+allowedCapabilities: []
+allowedFlexVolumes: []
+readOnlyRootFilesystem: false
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
