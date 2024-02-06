@@ -19,7 +19,7 @@ seLinuxContext:
 supplementalGroups:
   type: RunAsAny
 users:
-  - system:serviceaccount:nexus:{{- toYaml (index .Values "nexus" "serviceAccount" "name") }}
+  - system:serviceaccount:nexus:{{- toYaml (index .Values "nexus-repository-manager" "serviceAccount" "name") }}
 allowHostDirVolumePlugin: false
 allowHostIPC: true
 allowHostNetwork: false
