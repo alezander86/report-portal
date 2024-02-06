@@ -2,6 +2,7 @@ nexus-repository-manager:
   nameOverride: "nexus"
   #fullnameOverride: "nexus"
   serviceAccount:
+    create: false
     name: "okd"
   ingress:
     enabled: false
