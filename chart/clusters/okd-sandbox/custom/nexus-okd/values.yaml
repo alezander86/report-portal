@@ -18,12 +18,12 @@ nexus-repository-manager:
         - name: nexus-data
           mountPath: /nexus-data
       securityContext:
-        runAsUser: 1000700000
+        runAsUser: 1000750000
   nexus:
     securityContext:
-      fsGroup: 1000700000
-      runAsGroup: 1000700000
-      runAsUser: 1000700000
+      fsGroup: 1000750000
+      runAsGroup: 1000750000
+      runAsUser: 1000750000
     env:
       - name: NEXUS_SECURITY_RANDOMPASSWORD
         value: "false"
@@ -65,9 +65,9 @@ oauth2-proxy:
       whitelist_domains = ["*"]
     existingSecret: oauth2-proxy
   securityContext:
-      fsGroup: 1000700001
-      runAsGroup: 1000700001
-      runAsUser: 1000700001
+      fsGroup: 1000750001
+      runAsGroup: 1000750001
+      runAsUser: 1000750001
   ingress:
     enabled: true
     hosts:
