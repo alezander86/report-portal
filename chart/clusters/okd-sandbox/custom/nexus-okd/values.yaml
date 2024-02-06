@@ -4,9 +4,13 @@ nexus-repository-manager:
   serviceAccount:
     create: true
     name: "nexus-repo"
-  ingress:
+  route:
     enabled: true
-    hostRepo: nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.con
+    name: "nexus-ci"
+    host: "nexus-ci.apps.okd-sandbox.aws.main.edp.projects.epam.com"
+    service:
+      portName: "nexus-ui"
+      name: "nexus"
 
   deployment:
     initContainers:
