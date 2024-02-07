@@ -8,14 +8,6 @@ argo-cd:
     enabled: false
   redis-ha:
     enabled: true
-  haproxy:
-    # -- Enabled HAProxy LoadBalancing/Proxy
-    enabled: true
-    containerSecurityContext:
-      readOnlyRootFilesystem: true
-      runAsUser: 1000710001
-      runAsGroup: 1000710001
-      runAsNonRoot: true
   repoServer:
     replicas: 2
   server:
