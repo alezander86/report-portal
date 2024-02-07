@@ -1,4 +1,4 @@
-{{- if and (index .Values "nexus-okd") (index .Values "nexus-okd" "enable") -}}
+{{- if and (index .Values "nexus") (index .Values "nexus" "enable") -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
