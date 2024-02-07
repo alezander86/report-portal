@@ -11,4 +11,6 @@ spec:
     kind: Service
     name: argo-cd-argocd-server
     weight: 100
+  tls:
+    termination: edge
   wildcardPolicy: None
