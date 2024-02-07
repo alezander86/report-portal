@@ -1,0 +1,29 @@
+{{- if and (index .Values "argocd-app-project") (index .Values "argocd-app-project" "enable") -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.destinationServer}}-argocd-app-project
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .Values.argoProject | default "default" }}
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: chart/clusters/okd-sandbox/custom/argocd-app-project
+    targetRevision: {{ .Values.targetRevision }}
+  destination:
+    name: {{ .Values.destinationServer | default "in-cluster" }}
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ (index .Values "argocd-app-project" "createNamespace") }}
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

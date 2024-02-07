@@ -1,5 +1,13 @@
 destinationServer: "okd-sandbox"
 
+argocd:
+  createNamespace: true
+  enable: true
+
+argocd-app-project:
+  createNamespace: false
+  enable: true
+
 extensionsOIDC:
   createNamespace: true
   enable: true
@@ -21,7 +29,7 @@ sonar-operator:
   createNamespace: true
   enable: true
 
-nexus-okd:
+nexus:
   createNamespace: true
   enable: true
 

@@ -8,6 +8,8 @@ spec:
   defaultClientScopes:
     - groups
     - edp
-  secret: keycloak-client-nexus-secret
-  targetRealm: okd-sandbox
+  secret: '$keycloak-client-nexus-secret:clientSecret'
+  realmRef:
+    kind: ClusterKeycloakRealm
+    name: okd-sandbox
   webUrl: https://nexus.apps.okd-sandbox.aws.main.edp.projects.epam.com

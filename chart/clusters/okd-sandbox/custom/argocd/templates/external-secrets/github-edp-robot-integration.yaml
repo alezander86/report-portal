@@ -1,0 +1,26 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: edp-robot-autotest-github
+  labels:
+    argocd.argoproj.io/secret-type: repo-creds
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: SecretStore
+    name: aws-parameterstore
+  data:
+  - secretKey: sshPrivateKey
+    remoteRef:
+      conversionStrategy: Default
+      decodingStrategy: Base64
+      key: /edp/addons/eks-sandbox/argocd
+      metadataPolicy: None
+      property: argocd.githubRobotKey
+  - secretKey: url
+    remoteRef:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: /edp/addons/eks-sandbox/argocd
+      metadataPolicy: None
+      property: argocd.githubRobotUrl

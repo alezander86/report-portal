@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: edp-delivery-okd-github-qa
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for edp-delivery-okd-github-qa
+  destinations:
+    - namespace: edp-delivery-okd-github-qa-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for edp-delivery-okd-github-qa tenant
+      groups:
+        - ArgoCD-edp-delivery-okd-github-qa-users
+      name: developer
+      policies:
+        - p, proj:edp-delivery-okd-github-qa:developer, applications, create, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, applications, delete, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, applications, get, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, applications, override, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, applications, sync, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, applications, update, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, repositories, create, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, repositories, delete, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, repositories, update, edp-delivery-okd-github-qa/*, allow
+        - p, proj:edp-delivery-okd-github-qa:developer, repositories, get, edp-delivery-okd-github-qa/*, allow
+  sourceNamespaces:
+    - edp-delivery-okd-github-qa
+  sourceRepos:
+    - '*'

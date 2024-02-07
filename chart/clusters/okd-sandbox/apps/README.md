@@ -21,6 +21,8 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| argocd.createNamespace | bool | `true` |  |
+| argocd.enable | bool | `true` |  |
 | destinationServer | string | `"okd-sandbox"` |  |
 | extensionsOIDC.createNamespace | bool | `true` |  |
 | extensionsOIDC.enable | bool | `true` |  |

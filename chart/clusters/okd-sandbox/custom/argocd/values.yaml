@@ -1,0 +1,42 @@
+configs:
+  params:
+    application.namespaces: edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa, edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa, edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd, edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared, edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
+controller:
+  enableStatefulSet: true
+dex:
+  enabled: false
+redis-ha:
+  enabled: true
+repoServer:
+  replicas: 2
+server:
+  config:
+    application.instanceLabelKey: argocd.argoproj.io/instance-edp
+    oidc.config:
+      name: Keycloak
+      issuer: https://keycloak.apps.okd-sandbox.aws.main.edp.projects.epam.com/auth/realms/control-plane
+      clientID: argocd-tenant
+      clientSecret: $argocd-secret:clientSecret
+      requestedScopes:
+        - openid
+        - profile
+        - email
+        - groups
+    url: https://argocd.apps.okd-sandbox.aws.main.edp.projects.epam.com
+  env:
+  - name: ARGOCD_API_SERVER_REPLICAS
+    value: "2"
+  extraArgs:
+  - --insecure
+  rbacConfig:
+    policy.csv: |
+      # default global admins
+      g, ArgoCDAdmins, role:admin
+    policy.default: ""
+    scopes: '[groups]'
+  replicas: 2
+  route:
+    enabled: true
+    hostname: argocd.apps.okd-sandbox.aws.main.edp.projects.epam.com
+    termination_policy: Redirect
+    termination_type: edge

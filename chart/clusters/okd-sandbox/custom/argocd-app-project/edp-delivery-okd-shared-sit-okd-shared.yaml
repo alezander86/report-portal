@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: edp-delivery-okd-shared-qa-okd-shared
+spec:
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  description: CD pipelines for edp-delivery-okd-shared-qa-okd-shared
+  destinations:
+    - namespace: edp-delivery-okd-shared-qa-okd-shared-*
+      server: https://kubernetes.default.svc
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Users for edp-delivery-okd-shared-qa-okd-shared tenant
+      groups:
+        - ArgoCD-edp-delivery-okd-shared-qa-okd-shared-users
+      name: developer
+      policies:
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, applications, create, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, applications, delete, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, applications, get, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, applications, override, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, applications, sync, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, applications, update, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, repositories, create, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, repositories, delete, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, repositories, update, edp-delivery-okd-shared-qa-okd-shared/*, allow
+        - p, proj:edp-delivery-okd-shared-qa-okd-shared:developer, repositories, get, edp-delivery-okd-shared-qa-okd-shared/*, allow
+  sourceNamespaces:
+    - edp-delivery-okd-shared-qa-okd-shared
+  sourceRepos:
+    - '*'

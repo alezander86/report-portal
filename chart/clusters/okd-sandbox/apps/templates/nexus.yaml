@@ -1,0 +1,33 @@
+{{- if and (index .Values "nexus-okd") (index .Values "nexus-okd" "enable") -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.destinationServer}}-nexus
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .Values.argoProject | default "default" }}
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: chart/clusters/okd-sandbox/custom/nexus
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        nexus:
+        {{- toYaml (index .Values "nexus-repository-manager") | nindent 10 }}
+  destination:
+    name: {{ .Values.destinationServer | default "in-cluster" }}
+    namespace: nexus
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ (index .Values "nexus-okd" "createNamespace") }}
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}
