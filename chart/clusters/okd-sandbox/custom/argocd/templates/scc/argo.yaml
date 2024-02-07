@@ -35,10 +35,9 @@ seccompProfiles:
 supplementalGroups:
   type: RunAsAny
 users:
-  - system:serviceaccount:argocd:argo-redis-ha
-  - system:serviceaccount:argocd:argo-redis-ha-haproxy
   - system:serviceaccount:argocd:argo-cd-redis-ha
   - system:serviceaccount:argocd:argo-cd-redis-ha-haproxy
+  - system:serviceaccount:argocd:argo-cd-redis-ha-server
   - system:serviceaccount:argocd:argocd-notifications-controller
   - system:serviceaccount:argocd:argo-argocd-repo-server
   - system:serviceaccount:argocd:argocd-server
