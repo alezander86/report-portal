@@ -1,0 +1,49 @@
+---
+# Source: argo-cd/charts/argo-cd/charts/redis-ha/templates/redis-ha-health-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-redis-ha-health-configmap
+  namespace: "default"
+  labels:
+    heritage: Helm
+    release: argocd
+    chart: redis-ha-4.23.0
+    app: argocd-redis-ha
+data:
+  redis_liveness.sh: |
+    response=$(
+      redis-cli \
+        -h localhost \
+        -p 6379 \
+        ping
+    )
+    if [ "$response" != "PONG" ] && [ "${response:0:7}" != "LOADING" ] ; then
+      echo "$response"
+      exit 1
+    fi
+    echo "response=$response"
+  redis_readiness.sh: |
+    response=$(
+      redis-cli \
+        -h localhost \
+        -p 6379 \
+        ping
+    )
+    if [ "$response" != "PONG" ] ; then
+      echo "$response"
+      exit 1
+    fi
+    echo "response=$response"
+  sentinel_liveness.sh: |
+    response=$(
+      redis-cli \
+        -h localhost \
+        -p 26379 \
+        ping
+    )
+    if [ "$response" != "PONG" ]; then
+      echo "$response"
+      exit 1
+    fi
+    echo "response=$response"

@@ -6,13 +6,13 @@ metadata:
   name: argocd-redis
   namespace: "default"
   labels:
-    helm.sh/chart: argo-cd-5.52.1
+    helm.sh/chart: argo-cd-5.55.0
     app.kubernetes.io/name: argocd-redis
     app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
-    app.kubernetes.io/version: "v2.9.3"
+    app.kubernetes.io/version: "v2.10.0"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -22,13 +22,13 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: argo-cd-5.52.1
+        helm.sh/chart: argo-cd-5.55.0
         app.kubernetes.io/name: argocd-redis
         app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: redis
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
-        app.kubernetes.io/version: "v2.9.3"
+        app.kubernetes.io/version: "v2.10.0"
     spec:
       securityContext:
         runAsNonRoot: true
@@ -39,7 +39,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: redis
-        image: public.ecr.aws/docker/library/redis:7.0.13-alpine
+        image: public.ecr.aws/docker/library/redis:7.0.15-alpine
         imagePullPolicy: IfNotPresent
         args:
         - --save
@@ -58,6 +58,9 @@ spec:
             drop:
             - ALL
           readOnlyRootFilesystem: true
+        volumeMounts:
+          - mountPath: /health
+            name: health
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -67,4 +70,9 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: argocd-redis
               topologyKey: kubernetes.io/hostname
+      volumes:
+        - name: health
+          configMap:
+            name: argocd-redis-health-configmap
+            defaultMode: 0755
       dnsPolicy: ClusterFirst

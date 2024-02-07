@@ -6,15 +6,18 @@ metadata:
   name: argocd-cmd-params-cm
   namespace: "default"
   labels:
-    helm.sh/chart: argo-cd-5.52.1
+    helm.sh/chart: argo-cd-5.55.0
     app.kubernetes.io/name: argocd-cmd-params-cm
     app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
-    app.kubernetes.io/version: "v2.9.3"
+    app.kubernetes.io/version: "v2.10.0"
 data:
-  application.namespaces: ""
+  application.namespaces: edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa,
+    edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa, edp-delivery-az-delivery-dev,
+    edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd, edp-delivery-okd-shared-qa-okd-shared,
+    edp-delivery-okd-shared-sit-okd-shared, edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
   applicationsetcontroller.enable.leader.election: "false"
   applicationsetcontroller.enable.progressive.syncs: "false"
   applicationsetcontroller.log.format: text
@@ -27,14 +30,12 @@ data:
   controller.self.heal.timeout.seconds: "5"
   controller.status.processors: "20"
   otlp.address: ""
-  redis.server: argocd-redis:6379
+  redis.server: argocd-redis-ha-haproxy:6379
   repo.server: argocd-repo-server:8081
   reposerver.log.format: text
   reposerver.log.level: info
   reposerver.parallelism.limit: "0"
   server.basehref: /
-  server.dex.server: https://argocd-dex-server:5556
-  server.dex.server.strict.tls: "false"
   server.disable.auth: "false"
   server.enable.gzip: "true"
   server.insecure: "false"
