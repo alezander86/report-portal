@@ -1,6 +1,6 @@
 destinationServer: "okd-sandbox"
 
-argocd:
+argo-cd:
   createNamespace: true
   enable: true
 
