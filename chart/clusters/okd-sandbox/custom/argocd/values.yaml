@@ -39,5 +39,3 @@ argo-cd:
     route:
       enabled: true
       hostname: argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com
-      termination_policy: none
-      termination_type: edge
