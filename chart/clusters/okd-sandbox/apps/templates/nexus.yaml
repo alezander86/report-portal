@@ -1,4 +1,4 @@
-{{- if .Values "nexus" "enable" -}}
+{{- if .Values.nexus.enable -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
