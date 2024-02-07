@@ -38,4 +38,4 @@ argo-cd:
     replicas: 2
     route:
       enabled: true
-      hostname: argocd-dev.eks-sandbox.aws.main.edp.projects.epam.com
+      hostname: argocd-dev.okd-sandbox.aws.main.edp.projects.epam.com
