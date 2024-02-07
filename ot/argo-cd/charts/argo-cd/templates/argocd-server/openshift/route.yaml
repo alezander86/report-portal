@@ -14,7 +14,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.10.0"
 spec:
-  host: "https://argocd.apps.okd-sandbox.aws.main.edp.projects.epam.com"
+  host: "argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com"
   to:
     kind: Service
     name: argocd-server

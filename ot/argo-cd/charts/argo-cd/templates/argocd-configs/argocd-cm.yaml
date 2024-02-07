@@ -22,4 +22,4 @@ data:
   server.rbac.log.enforce.enable: "false"
   timeout.hard.reconciliation: 0s
   timeout.reconciliation: 180s
-  url: https://argocd.apps.okd-sandbox.aws.main.edp.projects.epam.com
+  url: https://argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com
