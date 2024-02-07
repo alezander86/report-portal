@@ -13,9 +13,17 @@ argo-cd:
   server:
     config:
       application.instanceLabelKey: argocd.argoproj.io/instance-edp
-      oidc.config: "name: Keycloak\nissuer: https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth/realms/control-plane\nclientID:
-        argocd-tenant\nclientSecret: $argocd-secret:clientSecret\nrequestedScopes:  \n  - openid\n
-      \ - profile\n  - email\n  - groups\n"
+      oidc.config: |
+        name: Keycloak
+        issuer: https://keycloak.apps.okd-sandbox.aws.main.edp.projects.epam.com/auth/realms/control-plane
+        clientID: argocd-tenant
+        clientSecret: $argocd-secret:clientSecret
+        requestedScopes:
+          - openid
+          - profile
+          - email
+          - groups
+      url: https://argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com
     env:
     - name: ARGOCD_API_SERVER_REPLICAS
       value: "2"
