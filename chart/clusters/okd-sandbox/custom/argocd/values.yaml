@@ -37,4 +37,4 @@ server:
   replicas: 2
   route:
     enabled: true
-    hostname: argocd.apps.okd-sandbox.aws.main.edp.projects.epam.com
+    hostname: https://argocd.apps.okd-sandbox.aws.main.edp.projects.epam.com
