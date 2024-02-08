@@ -1,6 +1,7 @@
 argo-cd:
   configs:
     params:
+      server.insecure: true
       application.namespaces: edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa, edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa, edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd, edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared, edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
   controller:
     enableStatefulSet: true
@@ -36,11 +37,6 @@ argo-cd:
       policy.default: ""
       scopes: '[groups]'
     replicas: 2
-    route:
-      enabled: true
-      hostname: argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com
-      termination: edge
-      insecureEdgeTerminationPolicy: Redirect
 
 oidc:
   enabled: true
