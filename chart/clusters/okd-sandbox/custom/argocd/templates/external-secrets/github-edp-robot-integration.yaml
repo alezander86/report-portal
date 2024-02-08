@@ -21,6 +21,6 @@ spec:
     remoteRef:
       conversionStrategy: Default
       decodingStrategy: None
-      key: /edp/addons/eks-sandbox/argocd
+      key: /edp/addons/okd-sandbox/argocd
       metadataPolicy: None
       property: argocd.githubRobotUrl

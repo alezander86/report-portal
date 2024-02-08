@@ -10,12 +10,14 @@ argo-cd:
     enabled: true
   repoServer:
     replicas: 2
+    serviceAccount:
+      name: "argocd-repo-server"
   server:
     config:
       application.instanceLabelKey: argocd.argoproj.io/instance-edp
       oidc.config: |
         name: Keycloak
-        issuer: https://keycloak.apps.okd-sandbox.aws.main.edp.projects.epam.com/auth/realms/control-plane
+        issuer: https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth/realms/okd-sandbox
         clientID: argocd-tenant
         clientSecret: $argocd-secret:clientSecret
         requestedScopes:

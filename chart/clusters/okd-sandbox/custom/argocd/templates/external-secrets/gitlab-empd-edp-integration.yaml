@@ -14,13 +14,13 @@ spec:
     remoteRef:
       conversionStrategy: Default
       decodingStrategy: Base64
-      key: /edp/addons/eks-sandbox/argocd
+      key: /edp/addons/okd-sandbox/argocd
       metadataPolicy: None
       property: argocd.gitlabKey
   - secretKey: url
     remoteRef:
       conversionStrategy: Default
       decodingStrategy: None
-      key: /edp/addons/eks-sandbox/argocd
+      key: /edp/addons/okd-sandbox/argocd
       metadataPolicy: None
       property: argocd.gitlabUrl
