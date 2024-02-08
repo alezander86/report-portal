@@ -29,8 +29,6 @@ argo-cd:
     env:
     - name: ARGOCD_API_SERVER_REPLICAS
       value: "2"
-    extraArgs:
-    - --insecure
     rbacConfig:
       policy.csv: |
         # default global admins
