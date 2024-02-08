@@ -19,7 +19,7 @@ argo-cd:
         name: Keycloak
         issuer: https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth/realms/okd-sandbox
         clientID: argocd-tenant
-        clientSecret: $argocd-secret:clientSecret
+        clientSecret: $keycloak-client-argocd-secret:clientSecret
         requestedScopes:
           - openid
           - profile
