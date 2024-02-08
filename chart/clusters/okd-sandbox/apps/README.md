@@ -21,15 +21,17 @@ EDP Cluster Addons that extend the Kubernetes Cluster Functionality
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| argocd.createNamespace | bool | `true` |  |
-| argocd.enable | bool | `true` |  |
+| argo-cd.createNamespace | bool | `true` |  |
+| argo-cd.enable | bool | `true` |  |
+| argocd-app-project.createNamespace | bool | `false` |  |
+| argocd-app-project.enable | bool | `true` |  |
 | destinationServer | string | `"okd-sandbox"` |  |
 | extensionsOIDC.createNamespace | bool | `true` |  |
 | extensionsOIDC.enable | bool | `true` |  |
 | harborHAOKD.createNamespace | bool | `true` |  |
 | harborHAOKD.enable | bool | `true` |  |
-| nexus-okd.createNamespace | bool | `true` |  |
-| nexus-okd.enable | bool | `true` |  |
+| nexus.createNamespace | bool | `true` |  |
+| nexus.enable | bool | `true` |  |
 | nexusOperator.createNamespace | bool | `true` |  |
 | nexusOperator.enable | bool | `true` |  |
 | postgres-operator.createNamespace | bool | `true` |  |
