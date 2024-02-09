@@ -1,20 +1,38 @@
 argo-cd:
-  configs:
-    params:
-      server.insecure: true
-      application.namespaces: edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa, edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa, edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd, edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared, edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
+  redis-ha:
+    enabled: true
+  redis:
+    enabled: false
+
+  server:
+    replicas: 1
+    env:
+      - name: ARGOCD_API_SERVER_REPLICAS
+        value: '1'
+
   controller:
     enableStatefulSet: true
   dex:
     enabled: false
-  redis-ha:
+
+  # Disabled for multitenancy env with single instance deployment
+  applicationSet:
     enabled: true
-  repoServer:
-    replicas: 2
-    serviceAccount:
-      name: "argocd-repo-server"
-  server:
-    config:
+    extraEnv:
+      - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_SCM_PROVIDERS
+        value: "false"
+
+  # Disable for now, since we don't have any notifications
+  notifications:
+    enabled: false
+
+  configs:
+    secret:
+      # -- Create the argocd-secret
+      createSecret: true
+    cm:
+      # required when SSO is enabled
+      url: https://argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com
       application.instanceLabelKey: argocd.argoproj.io/instance-edp
       oidc.config: |
         name: Keycloak
@@ -26,17 +44,32 @@ argo-cd:
           - profile
           - email
           - groups
-      url: https://argocd-dev.apps.okd-sandbox.aws.main.edp.projects.epam.com
-    env:
-    - name: ARGOCD_API_SERVER_REPLICAS
-      value: "2"
-    rbacConfig:
+    params:
+      server.insecure: true
+      application.namespaces: >-
+        edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa,
+        edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa,
+        edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd,
+        edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared,
+        edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
+
+      applicationsetcontroller.namespaces: >-
+        edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa,
+        edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa,
+        edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd,
+        edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared,
+        edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
+
+      applicationsetcontroller.allowed.scm.providers: "https://git.example.com/,https://gitlab.example.com/"
+      applicationsetcontroller.enable.scm.providers: "false"
+
+    rbac:
+      scopes: "[groups]"
       policy.csv: |
         # default global admins
-        g, ArgoCDAdmins, role:admin
-      policy.default: ""
-      scopes: '[groups]'
-    replicas: 2
+        g, Administrator, role:admin
+        # Default global developers
+        g, Developer, role:readonly
 
 oidc:
   enabled: true
