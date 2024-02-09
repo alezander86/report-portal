@@ -18,9 +18,6 @@ argo-cd:
   # Disabled for multitenancy env with single instance deployment
   applicationSet:
     enabled: true
-    extraEnv:
-      - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_SCM_PROVIDERS
-        value: "false"
 
   # Disable for now, since we don't have any notifications
   notifications:
@@ -61,6 +58,7 @@ argo-cd:
         edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
 
       applicationsetcontroller.allowed.scm.providers: "https://git.example.com/,https://gitlab.example.com/"
+      applicationsetcontroller.enable.scm.providers: "false"
 
     rbac:
       scopes: "[groups]"
