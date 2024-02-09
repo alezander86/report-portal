@@ -61,7 +61,6 @@ argo-cd:
         edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
 
       applicationsetcontroller.allowed.scm.providers: "https://git.example.com/,https://gitlab.example.com/"
-      applicationsetcontroller.enable.scm.providers: "false"
 
     rbac:
       scopes: "[groups]"
