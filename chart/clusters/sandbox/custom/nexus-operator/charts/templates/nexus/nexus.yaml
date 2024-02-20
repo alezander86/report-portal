@@ -4,5 +4,5 @@ metadata:
   name: nexus
   namespace: nexus
 spec:
-  url: http://nexus:8081
+  url: http://nexus.nexus:8081
   secret: nexus-admin-password

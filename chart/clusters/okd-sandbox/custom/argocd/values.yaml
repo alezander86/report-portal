@@ -44,18 +44,16 @@ argo-cd:
     params:
       server.insecure: true
       application.namespaces: >-
-        edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa,
-        edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa,
-        edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd,
-        edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared,
-        edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
+        edp-delivery-ot-delivery-dev, edp-delivery-mm-delivery-dev, edp-delivery-okd-qa-okd,
+        edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-vp-dev,
+        edp-delivery-sk-dev, edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa,
+        edp-delivery-zm-dev, edp-delivery-os-dev, edp-delivery-sf-dev, edp-delivery-vp-dev,
 
       applicationsetcontroller.namespaces: >-
-        edp-delivery-okd-gerrit-qa, edp-delivery-okd-github-qa, edp-delivery-okd-gitlab-qa,
-        edp-delivery-okd-jenkins-qa, edp-delivery-okd-sit, edp-delivery-okd-qa,
-        edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-okd-qa-okd,
-        edp-delivery-okd-shared-qa-okd-shared, edp-delivery-okd-shared-sit-okd-shared,
-        edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa
+        edp-delivery-ot-delivery-dev, edp-delivery-mm-delivery-dev, edp-delivery-okd-qa-okd,
+        edp-delivery-az-delivery-dev, edp-delivery-okd-sit-okd, edp-delivery-vp-dev,
+        edp-delivery-sk-dev, edp-delivery-ms-delivery-dev, edp-delivery-okd-qa-qa,
+        edp-delivery-zm-dev, edp-delivery-os-dev, edp-delivery-sf-dev, edp-delivery-vp-dev,
 
       applicationsetcontroller.allowed.scm.providers: "https://git.example.com/,https://gitlab.example.com/"
       applicationsetcontroller.enable.scm.providers: "false"

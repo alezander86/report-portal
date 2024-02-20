@@ -9,6 +9,10 @@ spec:
   maven:
     hosted:
       name: edp-maven-snapshots
+      maven:
+        versionPolicy: SNAPSHOT
+        layoutPolicy: STRICT
+        contentDisposition: INLINE
       storage:
         blobStoreName: "edp-maven"
         strictContentTypeValidation: true

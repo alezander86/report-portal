@@ -14,7 +14,6 @@ spec:
           - edp-python-proxy
           - edp-python-releases
           - edp-python-snapshots
-          - edp-python-hosted
       online: true
       storage:
         blobStoreName: "edp-python"

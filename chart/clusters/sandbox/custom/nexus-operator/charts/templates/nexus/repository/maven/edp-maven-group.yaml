@@ -14,7 +14,6 @@ spec:
           - edp-maven-proxy
           - edp-maven-releases
           - edp-maven-snapshots
-          - edp-maven-hosted
       online: true
       storage:
         blobStoreName: "edp-maven"

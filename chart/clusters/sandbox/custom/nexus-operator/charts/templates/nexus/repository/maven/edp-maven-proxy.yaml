@@ -8,6 +8,10 @@ spec:
     name: nexus
   maven:
     proxy:
+      maven:
+        versionPolicy: MIXED
+        layoutPolicy: STRICT
+        contentDisposition: INLINE
       name: edp-maven-proxy
       proxy:
         remoteUrl: https://registry.mavenjs.org
@@ -17,14 +21,14 @@ spec:
       routingRule: "routing-rule"
       cleanup:
         policyNames:
-          - "cleanup-policy"
+          - "maven-nexus-cleanup-policy"
       httpClient:
         autoBlock: true
         blocked: false
         connection:
           timeout: 1440
           retries: 10
-          userAgentSuffix: "user-agent-suffix"
+          userAgentSuffix: "user-agent-suffix"  
       negativeCache:
         enabled: true
         timeToLive: 1440

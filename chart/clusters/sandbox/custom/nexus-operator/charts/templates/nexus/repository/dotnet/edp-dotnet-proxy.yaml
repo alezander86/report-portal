@@ -16,7 +16,7 @@ spec:
       routingRule: "routing-rule"
       cleanup:
         policyNames:
-          - "cleanup-policy"
+          - "dotnet-nexus-cleanup-policy"
       httpClient:
         autoBlock: true
         blocked: false
